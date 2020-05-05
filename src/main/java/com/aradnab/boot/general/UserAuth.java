@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class UserAuth {
-	@GetMapping("/hello")
-	public String hello() {
-		return "Kanishka";
-	}
+    @GetMapping("/hello")
+    public String hello() {
+        return "Kanishka";
+    }
 }
