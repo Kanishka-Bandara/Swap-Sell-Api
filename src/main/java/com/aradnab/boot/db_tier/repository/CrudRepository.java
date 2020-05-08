@@ -8,7 +8,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class CrudRepository{
-    public static List<Object> searchByName(EntityManager manager,Class<Object> entityClass,String columnName,String value) {
+    public static List<Object> searchByName(EntityManager manager,Class entityClass,String columnName,String value) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Object> criteria = builder.createQuery(entityClass);
         Root<Object> from = criteria.from(entityClass);

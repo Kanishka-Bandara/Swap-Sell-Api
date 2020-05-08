@@ -1,7 +1,7 @@
 package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.db_tier.entity.Gender;
-import com.aradnab.boot.db_tier.service.GenderService;
+import com.aradnab.boot.general.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/gender")
@@ -30,7 +29,7 @@ public class GenderController {
     }
 
     @GetMapping("/getGenderByName/{gender}")
-    public ResponseEntity<Optional<Gender>> getGenderByName(@PathVariable String gender) {
+    public ResponseEntity<Gender> getGenderByName(@PathVariable String gender) {
         return ResponseEntity.ok().body(service.getGenderByName(gender));
     }
 
@@ -50,7 +49,14 @@ public class GenderController {
 
     @DeleteMapping("/delete/{id}")
     public HttpStatus deleteGender(@PathVariable int id) {
-        service.deleteGender(id);
+        final int i = service.deleteGender(id);
+        switch (i){
+            case 0:
+            case 2:
+                return HttpStatus.FAILED_DEPENDENCY;
+            case 1:
+                return HttpStatus.OK;
+        }
         return HttpStatus.OK;
     }
 

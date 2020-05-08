@@ -1,4 +1,4 @@
-package com.aradnab.boot.db_tier.service.service_controller;
+package com.aradnab.boot.general.service.service_controller;
 
 import com.aradnab.boot.db_tier.entity.Gender;
 import org.springframework.data.repository.query.Param;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Repository
 @Transactional
@@ -19,7 +20,7 @@ public interface GenderServiceInterface {
 
     Gender getGenderByID(int genderId, @Param("status")byte status);
 
-    void deleteGender(int genderId);
+    int deleteGender(int genderId);
 
-    Optional<Gender> getGenderByName(@Param("gender")String gender);
+    Gender getGenderByName(@Param("gender")String gender);
 }
