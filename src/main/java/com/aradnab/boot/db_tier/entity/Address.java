@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 public class Address {
     private int id;
-    private Date name;
+    private String name;
     private int addressTypeId;
     private int userId;
     private Integer postOfficeBoxId;
@@ -43,11 +43,11 @@ public class Address {
 
     @Basic
     @Column(name = "name", nullable = true, length = 200)
-    public Date getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Date name) {
+    public void setName(String name) {
         this.name = name;
     }
 

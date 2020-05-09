@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public interface GenderServiceInterface {
     Gender createGender(Gender gender);
 
-    Gender updateGender(int id,Gender gender);
+    Gender updateGender(@Param("id")int id,Gender gender);
 
     List<Gender> getAll();
 

@@ -1,6 +1,7 @@
 package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.db_tier.entity.Gender;
+import com.aradnab.boot.general.model.GenderModel;
 import com.aradnab.boot.general.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,38 +20,36 @@ public class GenderController {
     GenderService service = new GenderService();
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Gender>> getAll() {
-        return ResponseEntity.ok().body(service.getAll());
+    public ResponseEntity<List<GenderModel>> getAll() {
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(service.getAll()));
     }
 
     @GetMapping("/getGenderByID/{id}")
-    public ResponseEntity<Gender> getGenderByID(@PathVariable int id) {
-        return ResponseEntity.ok().body(service.getGenderByID(id, (byte) 1));
+    public ResponseEntity<GenderModel> getGenderByID(@PathVariable int id) {
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(service.getGenderByID(id, (byte) 1)));
     }
 
     @GetMapping("/getGenderByName/{gender}")
-    public ResponseEntity<Gender> getGenderByName(@PathVariable String gender) {
-        return ResponseEntity.ok().body(service.getGenderByName(gender));
+    public ResponseEntity<GenderModel> getGenderByName(@PathVariable String gender) {
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(service.getGenderByName(gender)));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Gender> createGender(@RequestBody Gender gender) {
-        System.out.println(gender.getId());
-        System.out.println(gender.getGender());
-        System.out.println(gender.getSavedAt());
-        System.out.println(gender.getStatus());
-        return ResponseEntity.ok().body(this.service.createGender(gender));
+    public ResponseEntity<GenderModel> createGender(@RequestBody GenderModel genderModel) {
+        Gender g = new Gender();
+        g.setGender(genderModel.getGender());
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(this.service.createGender(g)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Gender> updateGender(@PathVariable int id, @RequestBody Gender gender) {
-        return ResponseEntity.ok().body(this.service.updateGender(id, gender));
+    public ResponseEntity<GenderModel> updateGender(@PathVariable int id, @RequestBody Gender gender) {
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(this.service.updateGender(id, gender)));
     }
 
     @DeleteMapping("/delete/{id}")
     public HttpStatus deleteGender(@PathVariable int id) {
         final int i = service.deleteGender(id);
-        switch (i){
+        switch (i) {
             case 0:
             case 2:
                 return HttpStatus.FAILED_DEPENDENCY;

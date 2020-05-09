@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/repository/CrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/repository/CrudRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/repository/GenderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/repository/GenderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/service/GenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/GenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/service/service_controller/GenderServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/GenderServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/GenderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/GenderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/repository/CrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/repository/CrudRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/GenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/GenderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/service_controller/GenderServiceInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/service_controller/GenderServiceInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/GenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/GenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/GenderServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/GenderServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/GenderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/service_controller/GenderServiceInterface.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController.class" afterDir="false" />
     </list>
@@ -43,6 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -72,6 +73,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -88,6 +90,8 @@
       <recent name="com.aradnab.boot.db_tier.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service" />
+      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\db_tier\repository" />
     </key>
   </component>
@@ -155,7 +159,9 @@
       <workItem from="1588726668629" duration="11832000" />
       <workItem from="1588766291169" duration="7028000" />
       <workItem from="1588807542521" duration="9061000" />
-      <workItem from="1588860252674" duration="21217000" />
+      <workItem from="1588860252674" duration="35279000" />
+      <workItem from="1588943960866" duration="10996000" />
+      <workItem from="1588970727099" duration="6581000" />
     </task>
     <servers />
   </component>

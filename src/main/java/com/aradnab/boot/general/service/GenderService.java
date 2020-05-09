@@ -91,7 +91,7 @@ public class GenderService implements GenderServiceInterface {
 
     @Override
     public Gender getGenderByName(String gender) {
-        List<Gender> rl = em.createQuery("from Gender  g where g.gender=" + gender + " and g.status!=" + Status.DELETE_STATUS, Gender.class).getResultList();
+//        List<GenderModel> rl = em.createQuery("from GenderModel  g where g.gender=" + gender + " and g.status!=" + Status.DELETE_STATUS, GenderModel.class).getResultList();
         List<Object> gl = CrudRepository.searchByName(em, Gender.class, "gender", gender);
         if (gl.size() > 0) {
             for (int i=0;i<gl.size();i++){
