@@ -18,7 +18,8 @@ public class AddressModel {
     int userId;
     String type;
     String name;
-    String poBox;
+    String postalCode;
+    String postalArea;
     String street;
     String city;
     String district;
@@ -33,7 +34,8 @@ public class AddressModel {
         am.setUserId(userId);
         am.setType(type.getType());
         am.setName(name);
-        am.setPoBox(postOfficeBox.getPostOfficeBoxNumber());
+        am.setPostalCode(postOfficeBox.getPostalCode());
+        am.setPostalArea(postOfficeBox.getPostalArea());
         am.setStreet(street.getStreet());
         am.setCity(city.getCity());
         am.setDistrict(district.getDistrict());
@@ -49,7 +51,8 @@ public class AddressModel {
         am.setUserId(address.getUserId());
         am.setType(address.getAddressTypeByAddressTypeId().getType());
         am.setName(address.getName());
-        am.setPoBox(address.getPostOfficeBoxByPostOfficeBoxId().getPostOfficeBoxNumber());
+        am.setPostalCode(address.getPostOfficeBoxByPostOfficeBoxId().getPostalCode());
+        am.setPostalArea(address.getPostOfficeBoxByPostOfficeBoxId().getPostalArea());
         am.setStreet(address.getStreetByStreetId().getStreet());
         am.setCity(address.getCityByCityId().getCity());
         am.setDistrict(address.getDistrictByDistrictId().getDistrict());

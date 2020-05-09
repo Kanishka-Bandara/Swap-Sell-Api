@@ -1,7 +1,6 @@
 package com.aradnab.boot.db_tier.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,15 +8,14 @@ import java.util.Objects;
 @Table(name = "post_office_box", schema = "swap_sell")
 public class PostOfficeBox {
     private int id;
-    private String postOfficeBoxNumber;
+    private String postalCode;
+    private String postalArea;
     private Date savedAt;
     private Date lastUpdatedAt;
     private Date deletedAt;
     private Byte status;
-    private Collection<Address> addressesById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -28,13 +26,23 @@ public class PostOfficeBox {
     }
 
     @Basic
-    @Column(name = "post_office_box_number", nullable = true, length = 15)
-    public String getPostOfficeBoxNumber() {
-        return postOfficeBoxNumber;
+    @Column(name = "postal_code", nullable = true, length = 15)
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostOfficeBoxNumber(String postOfficeBoxNumber) {
-        this.postOfficeBoxNumber = postOfficeBoxNumber;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    @Basic
+    @Column(name = "postal_area", nullable = true, length = 45)
+    public String getPostalArea() {
+        return postalArea;
+    }
+
+    public void setPostalArea(String postalArea) {
+        this.postalArea = postalArea;
     }
 
     @Basic
@@ -83,7 +91,8 @@ public class PostOfficeBox {
         if (o == null || getClass() != o.getClass()) return false;
         PostOfficeBox that = (PostOfficeBox) o;
         return id == that.id &&
-                Objects.equals(postOfficeBoxNumber, that.postOfficeBoxNumber) &&
+                Objects.equals(postalCode, that.postalCode) &&
+                Objects.equals(postalArea, that.postalArea) &&
                 Objects.equals(savedAt, that.savedAt) &&
                 Objects.equals(lastUpdatedAt, that.lastUpdatedAt) &&
                 Objects.equals(deletedAt, that.deletedAt) &&
@@ -92,15 +101,6 @@ public class PostOfficeBox {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, postOfficeBoxNumber, savedAt, lastUpdatedAt, deletedAt, status);
-    }
-
-    @OneToMany(mappedBy = "postOfficeBoxByPostOfficeBoxId")
-    public Collection<Address> getAddressesById() {
-        return addressesById;
-    }
-
-    public void setAddressesById(Collection<Address> addressesById) {
-        this.addressesById = addressesById;
+        return Objects.hash(id, postalCode, postalArea, savedAt, lastUpdatedAt, deletedAt, status);
     }
 }

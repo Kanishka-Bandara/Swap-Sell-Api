@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/GenderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/GenderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/GenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/GenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/GenderServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/GenderServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/GenderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/service/service_controller/GenderServiceInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/GenderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/PostOfficeBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/AddressModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/AddressModel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,8 +78,8 @@
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.aradnab.boot.db_tier.entity" />
-      <recent name="com.aradnab.boot.db_tier.models" />
       <recent name="" />
+      <recent name="com.aradnab.boot.db_tier.models" />
       <recent name="com.aradnab.boot.db_tier.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -161,7 +154,7 @@
       <workItem from="1588807542521" duration="9061000" />
       <workItem from="1588860252674" duration="35279000" />
       <workItem from="1588943960866" duration="10996000" />
-      <workItem from="1588970727099" duration="6581000" />
+      <workItem from="1588970727099" duration="7803000" />
     </task>
     <servers />
   </component>
