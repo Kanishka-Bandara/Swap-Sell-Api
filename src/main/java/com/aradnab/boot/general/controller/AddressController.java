@@ -1,10 +1,11 @@
-package com.aradnab.boot.general.model;
+package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.Status;
 import com.aradnab.boot.db_tier.entity.Address;
 import com.aradnab.boot.db_tier.entity.City;
 import com.aradnab.boot.db_tier.entity.District;
 import com.aradnab.boot.db_tier.entity.Street;
+import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,12 @@ public class AddressController {
         return ResponseEntity.ok().body(this.createAddress(address));
     }
 
+    @PostMapping("/edit")
+    public ResponseEntity<AddressModel> updateGender(@RequestBody AddressModel address) {
+
+        return ResponseEntity.ok().body(this.createAddress(address));
+    }
+
 
 
     private AddressModel createAddress(AddressModel address) {
@@ -96,7 +103,7 @@ public class AddressController {
         //BEGIN::Saving address
         Address a = new Address();
         a.setName(address.getName());
-        a.setAddressTypeId(addressTypeService.getByName(address.type).getId());
+        a.setAddressTypeId(addressTypeService.getByName(address.getType()).getId());
         a.setUserId(address.getUserId());
         a.setPostOfficeBoxId(postOfficeBoxService.getByPostalCode(address.getPostalCode()).getId());
         a.setStreetId(street.getId());
