@@ -7,6 +7,7 @@ import com.aradnab.boot.db_tier.entity.District;
 import com.aradnab.boot.db_tier.entity.Street;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.service.*;
+import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -44,40 +45,28 @@ public class AddressController {
         return ResponseEntity.ok().body(t);
     }
 
-    @GetMapping("/typeByTypeId/{id}")
+    @GetMapping("/type/getById/{id}")
     public ResponseEntity<String> getAddressesTypes(@PathVariable int id) {
         return ResponseEntity.ok().body(addressTypeService.getByID(id).getType());
     }
 
-    @GetMapping("/typeIdByType/{type}")
+    @GetMapping("/type/getIdByType/{type}")
     public ResponseEntity<Integer> typeIdByType(@PathVariable String type) {
         return ResponseEntity.ok().body(addressTypeService.getByName(type).getId());
     }
 
-    @GetMapping("/getAddressById/{id}")
-    public ResponseEntity<AddressModel> getGenderByID(@PathVariable int id) {
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<AddressModel> getAddressByID(@PathVariable int id) {
         return ResponseEntity.ok().body(AddressModel.entityToModel(addressService.getByID(id)));
     }
 
-    @GetMapping("/getAddressesByUserId/{id}")
+    @GetMapping("/getByUser/{id}")
     public ResponseEntity<List<AddressModel>> getAddressesByUserId(@PathVariable int id) {
         return ResponseEntity.ok().body(AddressModel.entityToModel(userService.getByID(id).getAddressesById()));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AddressModel> createGender(@RequestBody AddressModel address) {
-        return ResponseEntity.ok().body(this.createAddress(address));
-    }
-
-    @PostMapping("/edit")
-    public ResponseEntity<AddressModel> updateGender(@RequestBody AddressModel address) {
-
-        return ResponseEntity.ok().body(this.createAddress(address));
-    }
-
-
-
-    private AddressModel createAddress(AddressModel address) {
+    public ResponseEntity<AddressModel> create(@RequestBody AddressModel address) {
         Date date = new Date();
         //BEGIN::Getting District ID
         District district = districtService.getByName(address.getDistrict());
@@ -117,8 +106,17 @@ public class AddressController {
         a.setStatus(Status.LIVE_ACTIVE_STATUS);
         Address newAddress = this.addressService.create(a);
         //END::Saving address
-        return AddressModel.entityToModel(newAddress);
+        return ResponseEntity.ok().body(AddressModel.entityToModel(newAddress));
     }
 
+    @PostMapping("/edit")
+    public ResponseEntity<AddressModel> update(@RequestBody AddressModel address) {
+        deleteByID(address.getId());
+        return create(address);
+    }
 
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<CRUDStatus> deleteByID(@PathVariable int id) {
+        return ResponseEntity.ok().body(addressService.delete(id));
+    }
 }
