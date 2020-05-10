@@ -22,7 +22,11 @@
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="persistenceUnit" value="78a49a77-d9e8-4445-9f94-22fba1c382d2" />
         </datasource-mapping>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="NewPersistenceUnit" />
+          <unit-entry name="entityManagerFactory" />
+          <unit-entry name="persistenceUnit" />
+        </naming-strategy-map>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/META-INF/persistence.xml" />
       </configuration>
     </facet>

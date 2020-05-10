@@ -71,5 +71,14 @@ public class PostOfficeBoxService implements PostOfficeBoxServiceInterface {
         }
     }
 
+    @Override
+    public PostOfficeBox getByPostalCode(String code) {
+        List<PostOfficeBox> l = em.createQuery("from PostOfficeBox  x where x.postalCode = " + code + " and x.status!=" + Status.DELETE_STATUS, PostOfficeBox.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            throw new ResourceNotFoundException("Record Not Found with postal code : " + code);
+        }
+    }
 }
 

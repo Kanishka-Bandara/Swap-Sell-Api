@@ -1,6 +1,7 @@
 package com.aradnab.boot.db_tier.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,12 +9,15 @@ import java.util.Objects;
 @Table(name = "post_office_box", schema = "swap_sell")
 public class PostOfficeBox {
     private int id;
+    private Integer districtId;
     private String postalCode;
     private String postalArea;
     private Date savedAt;
     private Date lastUpdatedAt;
     private Date deletedAt;
     private Byte status;
+    private Collection<Address> addressesById;
+    private District districtByDistrictId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -23,6 +27,16 @@ public class PostOfficeBox {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "district_id", nullable = true)
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
     }
 
     @Basic
@@ -91,6 +105,7 @@ public class PostOfficeBox {
         if (o == null || getClass() != o.getClass()) return false;
         PostOfficeBox that = (PostOfficeBox) o;
         return id == that.id &&
+                Objects.equals(districtId, that.districtId) &&
                 Objects.equals(postalCode, that.postalCode) &&
                 Objects.equals(postalArea, that.postalArea) &&
                 Objects.equals(savedAt, that.savedAt) &&
@@ -101,6 +116,25 @@ public class PostOfficeBox {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, postalCode, postalArea, savedAt, lastUpdatedAt, deletedAt, status);
+        return Objects.hash(id, districtId, postalCode, postalArea, savedAt, lastUpdatedAt, deletedAt, status);
+    }
+
+    @OneToMany(mappedBy = "postOfficeBoxByPostOfficeBoxId")
+    public Collection<Address> getAddressesById() {
+        return addressesById;
+    }
+
+    public void setAddressesById(Collection<Address> addressesById) {
+        this.addressesById = addressesById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "district_id", referencedColumnName = "id",insertable = false,updatable = false)
+    public District getDistrictByDistrictId() {
+        return districtByDistrictId;
+    }
+
+    public void setDistrictByDistrictId(District districtByDistrictId) {
+        this.districtByDistrictId = districtByDistrictId;
     }
 }

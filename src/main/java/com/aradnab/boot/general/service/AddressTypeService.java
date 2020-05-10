@@ -73,7 +73,8 @@ public class AddressTypeService implements AddressTypeServiceInterface {
 
     @Override
     public AddressType getByName(String name) {
-        List<AddressType> l = em.createQuery("from AddressType  x where x.type = " + name + " and x.status!=" + Status.DELETE_STATUS, AddressType.class).getResultList();
+        System.out.println(name);
+        List<AddressType> l = em.createQuery("from AddressType  x where x.type = '" + name + "' and x.status!=" + Status.DELETE_STATUS, AddressType.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {
@@ -81,4 +82,3 @@ public class AddressTypeService implements AddressTypeServiceInterface {
         }
     }
 }
-

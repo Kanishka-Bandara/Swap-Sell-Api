@@ -5,4 +5,5 @@ import com.aradnab.boot.general.service.service_controller.initial.ServiceContro
 import org.springframework.data.repository.query.Param;
 
 public interface PostOfficeBoxServiceInterface extends ServiceController<PostOfficeBox> {
+    PostOfficeBox getByPostalCode(String code);
 }

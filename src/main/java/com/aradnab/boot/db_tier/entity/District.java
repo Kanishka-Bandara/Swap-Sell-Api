@@ -1,5 +1,4 @@
 package com.aradnab.boot.db_tier.entity;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -17,9 +16,9 @@ public class District {
     private Collection<Address> addressesById;
     private Collection<City> citiesById;
     private Province provinceByProvinceId;
+    private Collection<PostOfficeBox> postOfficeBoxesById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -134,5 +133,14 @@ public class District {
 
     public void setProvinceByProvinceId(Province provinceByProvinceId) {
         this.provinceByProvinceId = provinceByProvinceId;
+    }
+
+    @OneToMany(mappedBy = "districtByDistrictId")
+    public Collection<PostOfficeBox> getPostOfficeBoxesById() {
+        return postOfficeBoxesById;
+    }
+
+    public void setPostOfficeBoxesById(Collection<PostOfficeBox> postOfficeBoxesById) {
+        this.postOfficeBoxesById = postOfficeBoxesById;
     }
 }

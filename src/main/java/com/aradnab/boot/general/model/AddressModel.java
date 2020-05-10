@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -25,10 +27,10 @@ public class AddressModel {
     String district;
     String province;
     String country;
-    int isDefaultAddress;
+    byte isDefaultAddress;
     byte status;
 
-    public static AddressModel entityToModel(int id, int userId, AddressType type, String name, PostOfficeBox postOfficeBox, Street street, City city, District district,Province province,Country country,int isDefaultAddress,byte status){
+    public static AddressModel entityToModel(int id, int userId, AddressType type, String name, PostOfficeBox postOfficeBox, Street street, City city, District district, Province province, Country country, byte isDefaultAddress, byte status) {
         AddressModel am = new AddressModel();
         am.setId(id);
         am.setUserId(userId);
@@ -45,7 +47,8 @@ public class AddressModel {
         am.setStatus(status);
         return am;
     }
-    public static AddressModel entityToModel(Address address){
+
+    public static AddressModel entityToModel(Address address) {
         AddressModel am = new AddressModel();
         am.setId(address.getId());
         am.setUserId(address.getUserId());
@@ -62,7 +65,13 @@ public class AddressModel {
         am.setStatus(address.getStatus());
         return am;
     }
-    public static List<AddressModel> entityToModel(List<Address> addresses){
+
+    public static List<AddressModel> entityToModel(List<Address> addresses) {
+        List<AddressModel> l = new ArrayList<>();
+        addresses.forEach(address -> l.add(entityToModel(address)));
+        return l;
+    }
+    public static List<AddressModel> entityToModel(Collection<Address> addresses) {
         List<AddressModel> l = new ArrayList<>();
         addresses.forEach(address -> l.add(entityToModel(address)));
         return l;
