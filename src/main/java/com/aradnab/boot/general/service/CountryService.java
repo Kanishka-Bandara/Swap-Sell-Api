@@ -74,7 +74,7 @@ public class CountryService implements CountryServiceInterface {
 
     @Override
     public Country getByName(String name) {
-        List<Country> l = em.createQuery("from Country  x where x.country = " + name + " and x.status!=" + Status.DELETE_STATUS, Country.class).getResultList();
+        List<Country> l = em.createQuery("from Country  x where x.country = '" + name + "' and x.status!=" + Status.DELETE_STATUS, Country.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {

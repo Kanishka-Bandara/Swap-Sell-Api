@@ -1,12 +1,12 @@
 package com.aradnab.boot.general.model;
 
+import com.aradnab.boot.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -68,12 +68,21 @@ public class AddressModel {
 
     public static List<AddressModel> entityToModel(List<Address> addresses) {
         List<AddressModel> l = new ArrayList<>();
-        addresses.forEach(address -> l.add(entityToModel(address)));
+        addresses.forEach(address -> {
+            if (address.getStatus() != Status.DELETE_STATUS) {
+                l.add(entityToModel(address));
+            }
+        });
         return l;
     }
+
     public static List<AddressModel> entityToModel(Collection<Address> addresses) {
         List<AddressModel> l = new ArrayList<>();
-        addresses.forEach(address -> l.add(entityToModel(address)));
+        addresses.forEach(address -> {
+            if (address.getStatus() != Status.DELETE_STATUS) {
+                l.add(entityToModel(address));
+            }
+        });
         return l;
     }
 

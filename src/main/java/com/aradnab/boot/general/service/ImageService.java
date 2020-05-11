@@ -6,12 +6,23 @@ import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.ImageRepository;
 import com.aradnab.boot.general.service.service_controller.ImageServiceInterface;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
 
 @Service
 @Transactional
@@ -71,5 +82,28 @@ public class ImageService implements ImageServiceInterface {
         }
     }
 
+    @Override
+    public String writeImage(Map<String,String> body) throws Exception {
+
+        String encodedImage = body.get("data");
+        String fileName = body.get("name");
+        String uploadDir = System.getProperty("user.dir")+"\\uploads\\prof_img".replace("/", Matcher.quoteReplacement("\\"));
+        byte[] bytes = Base64.decodeBase64(encodedImage);
+        Path path = Paths.get(uploadDir +"\\"+ fileName);
+        System.out.println(encodedImage);
+        Files.write(path,bytes);
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("\\uploads\\prof_img" +"\\"+ fileName).path(uploadDir).toUriString();
+    }
+
+    @Override
+    public void writeImage(MultipartFile file) throws Exception {
+        String uploadDir = System.getProperty("user.dir")+"\\uploads\\prof_img\\" + file.getOriginalFilename();
+        System.out.println(uploadDir);
+        File file1 = new File(uploadDir);
+        file1.createNewFile();
+        FileOutputStream stream = new FileOutputStream(file1);
+        stream.write(file.getBytes());
+        stream.close();
+    }
 }
 

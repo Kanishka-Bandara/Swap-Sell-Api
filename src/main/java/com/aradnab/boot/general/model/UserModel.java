@@ -1,12 +1,16 @@
 package com.aradnab.boot.general.model;
 
 import com.aradnab.boot.Status;
+import com.aradnab.boot.db_tier.entity.ContactNumber;
+import com.aradnab.boot.db_tier.entity.Title;
 import com.aradnab.boot.db_tier.entity.User;
+import com.aradnab.boot.general.service.TitleService;
 import com.aradnab.boot.general.service.service_controller.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
@@ -25,21 +29,29 @@ public class UserModel {
     String sName;
     String fullName;
     byte activeState;
-    Map<Integer, String> emails;
+    List<EmailModel> emails;
     String country;
     String note;
     String profilePicUrl;
     List<AddressModel> addresses;
-    List<Map<String, String>> contactNumbers;
+    List<ContactNumberModel> contactNumbers;
     String username;
     int status;
 
 
     public static UserModel entityToModel(User user) {
+        System.out.println("User Id = " + user.getId());
         UserModel um = new UserModel();
         um.setId(user.getId());
         um.setUserId(user.getUserId());
-        um.setTitle(user.getTitleByTitleId().getTitle());
+        Title titleByTitleId = user.getTitleByTitleId();
+        String title = titleByTitleId.getTitle();
+        for (UserType value : UserType.values()) {
+            if (user.getUserTypeId()==value.getId()){
+                um.setUserType(value);
+            }
+        }
+        um.setTitle(title);
         um.setGender(user.getGenderByGenderId().getGender());
         um.setFName(user.getfName());
         um.setLName(user.getlName());
@@ -49,51 +61,77 @@ public class UserModel {
         um.setCountry(user.getCountryByCountryId().getCountry());
         um.setProfilePicUrl(user.getImageByImageId().getImgUrl());
 //        BEGIN::Setting Emails
-        Map<Integer, String> emails = new HashMap<>();
-        user.getEmailsById().forEach(email -> {
-            if (email.getStatus() == Status.LIVE_ACTIVE_STATUS) {
-                emails.put(email.getId(), email.getEmail());
-            }
-        });
-        um.setEmails(emails);
+        if (user.getEmailsById() != null) {
+            List<EmailModel> emails = new ArrayList<>();
+            user.getEmailsById().forEach(email -> {
+                if (email.getStatus() == Status.LIVE_ACTIVE_STATUS) {
+                    EmailModel em = new EmailModel();
+                    em.setId(email.getId());
+                    em.setEmailTypeId(email.getEmailTypeId());
+                    em.setEmailType(email.getEmailTypeByEmailTypeId().getType());
+                    em.setEmail(email.getEmail());
+                    em.setStatus(email.getStatus());
+                    em.setIsDefault(email.getIsDefault());
+                    emails.add(em);
+                }
+            });
+            um.setEmails(emails);
+        }
 //        END::Setting Emails
 //        BEGIN::Setting Note
-        user.getNotesById().forEach(note1 -> {
-            if (note1.getStatus() == Status.LIVE_ACTIVE_STATUS) {
-                um.setNote(note1.getNote());
-            }
-        });
+        if (user.getNotesById() != null) {
+            user.getNotesById().forEach(note1 -> {
+                if (note1.getStatus() == Status.LIVE_ACTIVE_STATUS) {
+                    um.setNote(note1.getNote());
+                }
+            });
+        }
 //        END::Setting Note
 //        BEGIN::Setting Addresses
-        List<AddressModel> addresses = new ArrayList<>();
-        user.getAddressesById().forEach(address -> {
-            if (address.getStatus() == Status.LIVE_ACTIVE_STATUS) {
-                addresses.add(AddressModel.entityToModel(address));
-            }
-        });
-        um.setAddresses(addresses);
+        if (user.getAddressesById() != null) {
+            List<AddressModel> addresses = new ArrayList<>();
+            user.getAddressesById().forEach(address -> {
+                if (address.getStatus() == Status.LIVE_ACTIVE_STATUS) {
+                    addresses.add(AddressModel.entityToModel(address));
+                }
+            });
+            um.setAddresses(addresses);
+        }
 //        END::Setting Addresses
 //        BEGIN::Setting Contact Numbers
-        List<Map<String, String>> contactNumbers = new ArrayList<>();
-        user.getContactNumbersById().forEach(contactNumber -> {
-            if (contactNumber.getStatus() == Status.LIVE_ACTIVE_STATUS) {
-                Map<String, String> cn = new HashMap<>();
-                cn.put("id", contactNumber.getId() + "");
-                cn.put("type_id", contactNumber.getContactNumberTypeByContactNumberTypeId().getId() + "");
-                cn.put("type", contactNumber.getContactNumberTypeByContactNumberTypeId().getType());
-                cn.put("number", contactNumber.getNumber());
-                cn.put("is_default", contactNumber.getIsDefault() + "");
-                contactNumbers.add(cn);
-            }
-        });
-        um.setContactNumbers(contactNumbers);
+        if (user.getContactNumbersById() != null) {
+            List<ContactNumberModel> contactNumbers = new ArrayList<>();
+            user.getContactNumbersById().forEach(contactNumber -> {
+                if (contactNumber.getStatus() == Status.LIVE_ACTIVE_STATUS) {
+                    ContactNumberModel cm = new ContactNumberModel();
+                    cm.setId(contactNumber.getId());
+                    cm.setContactNumberTypeId(contactNumber.getContactNumberTypeByContactNumberTypeId().getId());
+                    cm.setContactNumberType(contactNumber.getContactNumberTypeByContactNumberTypeId().getType());
+                    cm.setContactNumber(contactNumber.getNumber());
+                    cm.setIsDefault(contactNumber.getIsDefault());
+                    cm.setStatus(contactNumber.getStatus());
+                    Map<String, String> cn = new HashMap<>();
+                    contactNumbers.add(cm);
+                }
+            });
+            um.setContactNumbers(contactNumbers);
+        }
 //        END::Setting Contact Numbers
 //        BEGIN::Setting Username
-        user.getLoginCredentialNormalsById().forEach(loginCredentialNormal -> {
-            if (loginCredentialNormal.getStatus() == Status.LIVE_ACTIVE_STATUS) {
-                um.setUsername(loginCredentialNormal.getUsername());
+        if (user.getLoginCredentialNormalsById() != null) {
+            user.getLoginCredentialNormalsById().forEach(loginCredentialNormal -> {
+                if (loginCredentialNormal.getStatus() == Status.LIVE_ACTIVE_STATUS) {
+                    um.setUsername(loginCredentialNormal.getUsername());
+                }
+            });
+        }
+        um.setStatus(user.getStatus());
+        UserType[] values = UserType.values();
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].getDbPhrase() == user.getTitleByTitleId().getTitle()) {
+                um.setUserType(values[i]);
             }
-        });
+        }
 //        END::Setting Username
         return um;
     }

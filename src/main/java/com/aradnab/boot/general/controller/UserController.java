@@ -1,8 +1,8 @@
 package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.Status;
-import com.aradnab.boot.db_tier.entity.Image;
-import com.aradnab.boot.db_tier.entity.User;
+import com.aradnab.boot.db_tier.entity.*;
+import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.model.UserModel;
 import com.aradnab.boot.general.service.*;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,18 @@ public class UserController {
     ImageService imageService;
     @Autowired
     CountryService countryService;
+    @Autowired
+    AddressController addressController;
+    @Autowired
+    EmailService emailService;
+    @Autowired
+    AddressService addressService;
+    @Autowired
+    EmailController emailController;
+    @Autowired
+    ContactNumberController contactNumberController;
+    @Autowired
+    ContactNumberService contactNumberService;
 
     @PostMapping("/create")
     public ResponseEntity<UserModel> create(@RequestBody UserModel userModel) {
@@ -39,11 +53,17 @@ public class UserController {
         i.setStatus(Status.LIVE_ACTIVE_STATUS);
         Image image = imageService.create(i);
         User u = new User();
-        u.setTitleId(titleService.getByTitleName(userModel.getTitle()).getId());
-        u.setGenderId(genderService.getGenderByName(userModel.getGender()).getId());
+        Title title = titleService.getByTitleName(userModel.getTitle());
+        Gender gender = genderService.getGenderByName(userModel.getGender());
+        Country country = countryService.getByName(userModel.getCountry());
+        u.setTitleId(title.getId());
+        u.setGenderId(gender.getId());
         u.setImageId(image.getId());
-        u.setCountryId(countryService.getByName(userModel.getCountry()).getId());
-        u.setUserTypeId(UserType.getUserTypeForEntity(userModel.getUserType()).getId());
+        u.setCountryId(country.getId());
+//        BEGIN::FIND User type id
+        UserType userType = UserType.valueOf(userModel.getUserType().toString());
+//        END::FIND User type id
+        u.setUserTypeId(userType.getId());
         u.setUserId(userService.generateUserID(userModel.getUserType()));
         u.setfName(userModel.getFName());
         u.setlName(userModel.getLName());
@@ -53,7 +73,46 @@ public class UserController {
         u.setSavedAt(d);
         u.setLastUpdatedAt(d);
         u.setStatus(Status.LIVE_ACTIVE_STATUS);
-        return ResponseEntity.ok().body(UserModel.entityToModel(userService.create(u)));
+        u.setTitleByTitleId(title);
+        u.setGenderByGenderId(gender);
+        u.setImageByImageId(image);
+        u.setCountryByCountryId(country);
+        User nu = userService.create(u);
+//        BEGIN::Creat User Address
+        if (userModel.getAddresses() != null) {
+            if (userModel.getAddresses().size() > 0) {
+                userModel.getAddresses().forEach(addressModel -> {
+                    addressModel.setUserId(nu.getId());
+                    AddressModel ad = addressController.create(addressModel).getBody();
+                    u.setAddressesById(nu.getAddressesById());
+                });
+            }
+        }
+        u.setAddressesById(addressService.getByUserIdAsCollection(nu.getId()));
+//        END::Creat User Address
+//        BEGIN::Create User Email
+        if (userModel.getEmails() != null) {
+            if (userModel.getEmails().size() > 0) {
+                userModel.getEmails().forEach(emailModel -> {
+                    emailModel.setUserId(nu.getId());
+                    emailController.create(emailModel);
+                });
+            }
+        }
+        u.setEmailsById(emailService.getByUserIdAsCollection(nu.getId()));
+//        END::Create User Email
+//        BEGIN::Create User Contact Number
+        if (userModel.getContactNumbers() != null) {
+            if (userModel.getContactNumbers().size() > 0) {
+                userModel.getContactNumbers().forEach(contactNumberModel -> {
+                    contactNumberModel.setUserId(nu.getId());
+                    contactNumberController.create(contactNumberModel);
+                });
+            }
+        }
+        u.setContactNumbersById(contactNumberService.getByUserIdAsCollection(nu.getId()));
+//        END::Create User Contact Number
+        return get(nu.getId());
     }
 
     @GetMapping("/getAll")
@@ -70,8 +129,5 @@ public class UserController {
     public ResponseEntity<CRUDStatus> delete(@PathVariable int id) {
         return ResponseEntity.ok().body(userService.delete(id));
     }
-
-
-
 
 }

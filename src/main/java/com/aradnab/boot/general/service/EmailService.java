@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +85,16 @@ public class EmailService implements EmailServiceInterface {
         } else {
             throw new ResourceNotFoundException("Record Not Found with id : " + typeId);
         }
+    }
+
+    @Override
+    public List<Email> getByUserId(int userId) {
+        return em.createQuery("from Email  x where  x.userId = "+userId +" and x.status!=" + Status.DELETE_STATUS, Email.class).getResultList();
+    }
+
+    @Override
+    public Collection<Email> getByUserIdAsCollection(int userId) {
+        return em.createQuery("from Email  x where  x.userId = "+userId +" and x.status!=" + Status.DELETE_STATUS, Email.class).getResultList();
     }
 }
 

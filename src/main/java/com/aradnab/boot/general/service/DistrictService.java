@@ -73,7 +73,7 @@ public class DistrictService implements DistrictServiceInterface {
 
     @Override
     public District getByName(String name) {
-        List<District> l = em.createQuery("from District  x where x.district = " + name + " and x.status!=" + Status.DELETE_STATUS, District.class).getResultList();
+        List<District> l = em.createQuery("from District  x where x.district = '" + name + "' and x.status!=" + Status.DELETE_STATUS, District.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {

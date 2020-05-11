@@ -31,7 +31,9 @@ public class UserService implements UserServiceInterface {
         user.setSavedAt(new Date());
         user.setLastUpdatedAt(new Date());
         user.setStatus(Status.LIVE_ACTIVE_STATUS);
-        return repository.save(user);
+        User user1 = repository.saveAndFlush(user);
+//        System.out.println("note = "+user1.getNotesById().size());
+        return user1;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class UserService implements UserServiceInterface {
         List<User> l = em.createQuery("from User  x where x.id = " + user.getId() + " and x.status!=" + Status.DELETE_STATUS, User.class).getResultList();
         if (l.size() > 0) {
             user.setLastUpdatedAt(new Date());
-            return repository.save(user);
+            return repository.saveAndFlush(user);
         } else {
             throw new ResourceNotFoundException("Record Not Found with id : " + user.getId());
         }

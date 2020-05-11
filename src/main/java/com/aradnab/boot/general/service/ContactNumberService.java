@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +85,16 @@ public class ContactNumberService implements ContactNumberServiceInterface {
         } else {
             throw new ResourceNotFoundException("Record Not Found with id : " + typeId);
         }
+    }
+
+    @Override
+    public List<ContactNumber> getByUserId(int userId) {
+        return em.createQuery("from ContactNumber  x where  x.userId = "+userId +" and x.status!=" + Status.DELETE_STATUS, ContactNumber.class).getResultList();
+    }
+
+    @Override
+    public Collection<ContactNumber> getByUserIdAsCollection(int userId) {
+        return getByUserId(userId);
     }
 }
 

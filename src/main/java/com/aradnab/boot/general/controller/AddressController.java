@@ -1,10 +1,7 @@
 package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.Status;
-import com.aradnab.boot.db_tier.entity.Address;
-import com.aradnab.boot.db_tier.entity.City;
-import com.aradnab.boot.db_tier.entity.District;
-import com.aradnab.boot.db_tier.entity.Street;
+import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.service.*;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
@@ -39,19 +36,19 @@ public class AddressController {
 
 
     @GetMapping("/types")
-    public ResponseEntity<Map<Integer, String>> getAddressesTypes() {
+    public ResponseEntity<Map<Integer, String>> getTypes() {
         Map<Integer, String> t = new HashMap<>();
         addressTypeService.getAll().forEach(addressType -> t.put(addressType.getId(), addressType.getType()));
         return ResponseEntity.ok().body(t);
     }
 
     @GetMapping("/type/getById/{id}")
-    public ResponseEntity<String> getAddressesTypes(@PathVariable int id) {
+    public ResponseEntity<String> getTypeById(@PathVariable int id) {
         return ResponseEntity.ok().body(addressTypeService.getByID(id).getType());
     }
 
     @GetMapping("/type/getIdByType/{type}")
-    public ResponseEntity<Integer> typeIdByType(@PathVariable String type) {
+    public ResponseEntity<Integer> getTypeIdByType(@PathVariable String type) {
         return ResponseEntity.ok().body(addressTypeService.getByName(type).getId());
     }
 
@@ -92,9 +89,11 @@ public class AddressController {
         //BEGIN::Saving address
         Address a = new Address();
         a.setName(address.getName());
-        a.setAddressTypeId(addressTypeService.getByName(address.getType()).getId());
+        AddressType addressType = addressTypeService.getByName(address.getType());
+        a.setAddressTypeId(addressType.getId());
         a.setUserId(address.getUserId());
-        a.setPostOfficeBoxId(postOfficeBoxService.getByPostalCode(address.getPostalCode()).getId());
+        PostOfficeBox poBox = postOfficeBoxService.getByPostalCode(address.getPostalCode());
+        a.setPostOfficeBoxId(poBox.getId());
         a.setStreetId(street.getId());
         a.setCityId(city.getId());
         a.setDistrictId(district.getId());
@@ -104,6 +103,13 @@ public class AddressController {
         a.setSavedAt(date);
         a.setLastUpdatedAt(date);
         a.setStatus(Status.LIVE_ACTIVE_STATUS);
+        a.setAddressTypeByAddressTypeId(addressType);
+        a.setPostOfficeBoxByPostOfficeBoxId(poBox);
+        a.setStreetByStreetId(street);
+        a.setCityByCityId(city);
+        a.setDistrictByDistrictId(district);
+        a.setProvinceByProvinceId(district.getProvinceByProvinceId());
+        a.setCountryByCountryId(district.getProvinceByProvinceId().getCountryByCountryId());
         Address newAddress = this.addressService.create(a);
         //END::Saving address
         return ResponseEntity.ok().body(AddressModel.entityToModel(newAddress));

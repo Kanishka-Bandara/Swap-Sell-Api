@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +85,16 @@ public class AddressService implements AddressServiceInterface {
         } else {
             throw new ResourceNotFoundException("Record Not Found with id : " + typeId);
         }
+    }
+
+    @Override
+    public List<Address> getByUserId(int userId) {
+        return em.createQuery("from Address  x where x.userId = "+userId +" and x.isDefault = "+1+" and x.status!=" + Status.DELETE_STATUS, Address.class).getResultList();
+    }
+
+    @Override
+    public Collection<Address> getByUserIdAsCollection(int userId) {
+        return em.createQuery("from Address  x where x.userId = "+userId +" and x.isDefault = "+1+" and x.status!=" + Status.DELETE_STATUS, Address.class).getResultList();
     }
 }
 

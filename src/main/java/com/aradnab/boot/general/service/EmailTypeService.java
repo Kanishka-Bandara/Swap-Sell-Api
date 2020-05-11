@@ -73,7 +73,7 @@ public class EmailTypeService implements EmailTypeServiceInterface {
 
     @Override
     public EmailType getByName(String name) {
-        List<EmailType> l = em.createQuery("from EmailType  x where x.type = " + name + " and x.status!=" + Status.DELETE_STATUS, EmailType.class).getResultList();
+        List<EmailType> l = em.createQuery("from EmailType  x where x.type = '" + name + "' and x.status!=" + Status.DELETE_STATUS, EmailType.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {

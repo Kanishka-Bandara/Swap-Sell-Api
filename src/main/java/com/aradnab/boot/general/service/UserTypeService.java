@@ -49,7 +49,8 @@ public class UserTypeService implements UserTypeServiceInterface {
 
     @Override
     public UserType getByID(int id) {
-        List<UserType> l = em.createQuery("from UserType  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, UserType.class).getResultList();
+        System.out.println(em==null);
+        List<UserType> l = em.createQuery("from UserType  x where x.id = '" + id + "' and x.status!=" + Status.DELETE_STATUS, UserType.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {

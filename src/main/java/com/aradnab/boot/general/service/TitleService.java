@@ -73,7 +73,7 @@ public class TitleService implements TitleServiceInterface {
 
     @Override
     public Title getByTitleName(String title) {
-        List<Title> l = em.createQuery("from Title  x where x.title = " + title + " and x.status!=" + Status.DELETE_STATUS, Title.class).getResultList();
+        List<Title> l = em.createQuery("from Title  x where x.title = '" + title + "' and x.status!=" + Status.DELETE_STATUS, Title.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {

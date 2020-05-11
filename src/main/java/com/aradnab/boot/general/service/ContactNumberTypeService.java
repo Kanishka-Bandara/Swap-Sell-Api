@@ -73,7 +73,7 @@ public class ContactNumberTypeService implements ContactNumberTypeServiceInterfa
 
     @Override
     public ContactNumberType getByName(String name) {
-        List<ContactNumberType> l = em.createQuery("from ContactNumberType  x where x.type = " + name + " and x.status!=" + Status.DELETE_STATUS, ContactNumberType.class).getResultList();
+        List<ContactNumberType> l = em.createQuery("from ContactNumberType  x where x.type = '" + name + "' and x.status!=" + Status.DELETE_STATUS, ContactNumberType.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {
