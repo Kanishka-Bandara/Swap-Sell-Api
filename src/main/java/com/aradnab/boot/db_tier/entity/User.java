@@ -12,6 +12,7 @@ public class User {
     private int genderId;
     private int imageId;
     private int countryId;
+    private int userTypeId;
     private String userId;
     private String fName;
     private String lName;
@@ -47,6 +48,7 @@ public class User {
     private Collection<ShopRating> shopRatingsById;
     private Collection<Transaction> transactionsById;
     private Title titleByTitleId;
+    private UserType userTypeByUserTypeId;
     private Gender genderByGenderId;
     private Image imageByImageId;
     private Country countryByCountryId;
@@ -103,6 +105,16 @@ public class User {
 
     public void setCountryId(int countryId) {
         this.countryId = countryId;
+    }
+
+    @Basic
+    @Column(name = "user_type_id", nullable = false)
+    public int getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(int userTypeId) {
+        this.userTypeId = userTypeId;
     }
 
     @Basic
@@ -456,6 +468,16 @@ public class User {
 
     public void setTitleByTitleId(Title titleByTitleId) {
         this.titleByTitleId = titleByTitleId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id", nullable = false, insertable = false,updatable = false)
+    public UserType getUserTypeByUserTypeId() {
+        return userTypeByUserTypeId;
+    }
+
+    public void setUserTypeByUserTypeId(UserType userTypeByUserTypeId) {
+        this.userTypeByUserTypeId = userTypeByUserTypeId;
     }
 
     @ManyToOne

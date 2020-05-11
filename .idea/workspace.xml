@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/AddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/AddressController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/AddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/AddressService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/UserServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/UserServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/db_tier/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/AddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/AddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/service_controller/UserServiceInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/service_controller/UserServiceInterface.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +36,8 @@
       <list>
         <option value="Interface" />
         <option value="AnnotationType" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -69,6 +73,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aradnab.boot.general.service" />
+      <recent name="com.aradnab.boot.general.service.service_controller" />
+      <recent name="com.aradnab.boot.db_tier.repository" />
+      <recent name="com.aradnab.boot.db_tier.entity" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.aradnab.boot.general.service.service_controller" />
     </key>
@@ -80,8 +90,8 @@
       <recent name="com.aradnab.boot.db_tier.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service" />
+      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\db_tier\repository" />
     </key>
   </component>
@@ -148,7 +158,10 @@
       <workItem from="1588943960866" duration="10996000" />
       <workItem from="1588970727099" duration="8449000" />
       <workItem from="1589032638874" duration="14614000" />
-      <workItem from="1589074800956" duration="5115000" />
+      <workItem from="1589074800956" duration="16929000" />
+      <workItem from="1589114057133" duration="636000" />
+      <workItem from="1589123839938" duration="10643000" />
+      <workItem from="1589164303050" duration="470000" />
     </task>
     <servers />
   </component>
