@@ -1,5 +1,6 @@
 package com.aradnab.boot.general.service;
 
+import com.aradnab.boot.config.ResourceUrl;
 import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.Image;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
@@ -8,6 +9,8 @@ import com.aradnab.boot.general.service.service_controller.ImageServiceInterface
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,6 +22,7 @@ import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -83,21 +87,24 @@ public class ImageService implements ImageServiceInterface {
     }
 
     @Override
-    public String writeImage(Map<String,String> body) throws Exception {
-
+    public String writeProfileImage(Map<String, String> body) throws Exception {
         String encodedImage = body.get("data");
-        String fileName = body.get("name");
-        String uploadDir = System.getProperty("user.dir")+"\\uploads\\prof_img".replace("/", Matcher.quoteReplacement("\\"));
-        byte[] bytes = Base64.decodeBase64(encodedImage);
-        Path path = Paths.get(uploadDir +"\\"+ fileName);
-        System.out.println(encodedImage);
-        Files.write(path,bytes);
-        return ServletUriComponentsBuilder.fromCurrentContextPath().path("\\uploads\\prof_img" +"\\"+ fileName).path(uploadDir).toUriString();
+        String fileName = body.get("userId")+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+body.get("name");
+        String imgPath = ResourceUrl.WRITABLE_PROFILE_DIR + "/"+fileName;
+        writeImage(encodedImage,imgPath);
+        return fileName;
+    }
+
+    @Override
+    public void writeImage(String base64EncodedImage, String path) throws Exception {
+        byte[] bytes = Base64.decodeBase64(base64EncodedImage);
+        Path p = Paths.get(path);
+        Files.write(p, bytes);
     }
 
     @Override
     public void writeImage(MultipartFile file) throws Exception {
-        String uploadDir = System.getProperty("user.dir")+"\\uploads\\prof_img\\" + file.getOriginalFilename();
+        String uploadDir = System.getProperty("user.dir") + "\\uploads\\prof_img\\" + file.getOriginalFilename();
         System.out.println(uploadDir);
         File file1 = new File(uploadDir);
         file1.createNewFile();
