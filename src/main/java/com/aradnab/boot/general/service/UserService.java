@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.service;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.User;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.UserRepository;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

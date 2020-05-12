@@ -1,16 +1,13 @@
 package com.aradnab.boot.general.model;
 
-import com.aradnab.boot.Status;
-import com.aradnab.boot.db_tier.entity.ContactNumber;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.Title;
 import com.aradnab.boot.db_tier.entity.User;
-import com.aradnab.boot.general.service.TitleService;
 import com.aradnab.boot.general.service.service_controller.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 

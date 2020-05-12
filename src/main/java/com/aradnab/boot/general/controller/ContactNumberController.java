@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.controller;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.ContactNumber;
 import com.aradnab.boot.db_tier.entity.ContactNumberType;
 import com.aradnab.boot.general.model.ContactNumberModel;

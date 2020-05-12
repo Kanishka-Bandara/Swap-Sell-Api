@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.controller;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.service.*;

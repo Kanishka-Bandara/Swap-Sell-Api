@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.controller;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.Email;
 import com.aradnab.boot.db_tier.entity.EmailType;
 import com.aradnab.boot.general.model.EmailModel;

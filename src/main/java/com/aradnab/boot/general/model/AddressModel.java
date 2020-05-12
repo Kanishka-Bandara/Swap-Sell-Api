@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.model;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

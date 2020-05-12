@@ -1,4 +1,4 @@
-package com.aradnab.boot;
+package com.aradnab.boot.config;
 
 public class Status {
     public static byte DELETE_STATUS = 0;

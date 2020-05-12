@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.controller;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.model.UserModel;
@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 

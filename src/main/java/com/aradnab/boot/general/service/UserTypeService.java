@@ -1,6 +1,6 @@
 package com.aradnab.boot.general.service;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.UserType;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.UserTypeRepository;

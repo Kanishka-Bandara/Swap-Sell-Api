@@ -1,13 +1,12 @@
 package com.aradnab.boot.general.model;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
