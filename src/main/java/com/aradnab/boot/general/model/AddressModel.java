@@ -18,6 +18,7 @@ import java.util.List;
 public class AddressModel {
     int id;
     int userId;
+    int typeId;
     String type;
     String name;
     String postalCode;
@@ -30,28 +31,11 @@ public class AddressModel {
     byte isDefaultAddress;
     byte status;
 
-    public static AddressModel entityToModel(int id, int userId, AddressType type, String name, PostOfficeBox postOfficeBox, Street street, City city, District district, Province province, Country country, byte isDefaultAddress, byte status) {
-        AddressModel am = new AddressModel();
-        am.setId(id);
-        am.setUserId(userId);
-        am.setType(type.getType());
-        am.setName(name);
-        am.setPostalCode(postOfficeBox.getPostalCode());
-        am.setPostalArea(postOfficeBox.getPostalArea());
-        am.setStreet(street.getStreet());
-        am.setCity(city.getCity());
-        am.setDistrict(district.getDistrict());
-        am.setProvince(province.getProvince());
-        am.setCountry(country.getCountry());
-        am.setIsDefaultAddress(isDefaultAddress);
-        am.setStatus(status);
-        return am;
-    }
-
     public static AddressModel entityToModel(Address address) {
         AddressModel am = new AddressModel();
         am.setId(address.getId());
         am.setUserId(address.getUserId());
+        am.setTypeId(address.getAddressTypeId());
         am.setType(address.getAddressTypeByAddressTypeId().getType());
         am.setName(address.getName());
         am.setPostalCode(address.getPostOfficeBoxByPostOfficeBoxId().getPostalCode());

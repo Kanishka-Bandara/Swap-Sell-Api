@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -126,6 +128,13 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public ResponseEntity<CRUDStatus> delete(@PathVariable int id) {
         return ResponseEntity.ok().body(userService.delete(id));
+    }
+
+    @GetMapping("/title/getAll")
+    public ResponseEntity<Map<Integer, String>> getAllTitles() {
+        Map<Integer, String> m = new HashMap<>();
+        titleService.getAll().forEach(title -> m.put(title.getId(), title.getTitle()));
+        return ResponseEntity.ok().body(m);
     }
 
 }
