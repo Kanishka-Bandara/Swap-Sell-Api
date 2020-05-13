@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -81,6 +82,12 @@ public class UserService implements UserServiceInterface {
         DecimalFormat f = new DecimalFormat("#########");
         String d = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         return userType.getIndexPhrase()+d+f.format((repository.findAll().size()+1));
+    }
+
+    @Override
+    public boolean isUserNameAlreadyExists(String username) {
+        List<User> l = em.createQuery("from User  x where x.userId = '" + username+"'", User.class).getResultList();
+        return l.size() > 0;
     }
 }
 

@@ -15,4 +15,6 @@ public interface EmailServiceInterface extends ServiceController<Email> {
     List<Email> getByUserId(@Param("userId") int userId);
 
     Collection<Email> getByUserIdAsCollection(@Param("userId") int userId);
+
+    boolean isEmailAlreadyExists(String email);
 }

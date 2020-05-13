@@ -96,5 +96,11 @@ public class EmailService implements EmailServiceInterface {
     public Collection<Email> getByUserIdAsCollection(int userId) {
         return em.createQuery("from Email  x where  x.userId = "+userId +" and x.status!=" + Status.DELETE_STATUS, Email.class).getResultList();
     }
+
+    @Override
+    public boolean isEmailAlreadyExists(String email) {
+        List<Email> l = em.createQuery("from Email  x where  x.email = '" + email + "'", Email.class).getResultList();
+        return l.size()>0;
+    }
 }
 

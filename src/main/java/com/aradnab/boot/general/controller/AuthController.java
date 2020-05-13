@@ -4,10 +4,7 @@ import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AuthenticatedUserModel;
 import com.aradnab.boot.general.model.UserModel;
-import com.aradnab.boot.general.service.AuthenticatedUserService;
-import com.aradnab.boot.general.service.LoginCredentialFbService;
-import com.aradnab.boot.general.service.LoginCredentialGoogleService;
-import com.aradnab.boot.general.service.LoginCredentialNormalService;
+import com.aradnab.boot.general.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,6 +20,10 @@ import java.util.Map;
 public class AuthController {
     @Autowired
     UserController userController;
+    @Autowired
+    UserService userService;
+    @Autowired
+    EmailService emailService;
     @Autowired
     AuthenticatedUserService authenticatedUserService;
     @Autowired
@@ -94,6 +95,16 @@ public class AuthController {
     @PostMapping("/signIn/normal")
     public ResponseEntity<UserModel> signIn(@RequestBody Map<String, String> response) {
         return ResponseEntity.ok().body(UserModel.entityToModel(loginCredentialNormalService.getAuth(response.get("un"), response.get("pw"))));
+    }
+
+    @PostMapping("/signUp/userNameAlreadyExist")
+    public ResponseEntity<Boolean> isUserNameAlreadyExists(@RequestBody Map<String, String> response) {
+        return ResponseEntity.ok().body(  userService.isUserNameAlreadyExists(response.get("username")));
+    }
+
+    @PostMapping("/signUp/userEmailAlreadyExist")
+    public ResponseEntity<Boolean> isEmailAlreadyExists(@RequestBody Map<String, String> response) {
+        return ResponseEntity.ok().body(  emailService.isEmailAlreadyExists(response.get("email")));
     }
 
 }
