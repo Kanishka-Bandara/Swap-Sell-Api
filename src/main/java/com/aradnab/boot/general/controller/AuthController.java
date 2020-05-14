@@ -98,13 +98,21 @@ public class AuthController {
     }
 
     @PostMapping("/signUp/userNameAlreadyExist")
-    public ResponseEntity<Boolean> isUserNameAlreadyExists(@RequestBody Map<String, String> response) {
-        return ResponseEntity.ok().body(  userService.isUserNameAlreadyExists(response.get("username")));
+    public ResponseEntity<Integer> isUserNameAlreadyExists(@RequestBody Map<String, String> response) {
+        int status = 0;
+        if (userService.isUserNameAlreadyExists(response.get("username"))) {
+            status = 1;
+        }
+        return ResponseEntity.ok().body(status);
     }
 
     @PostMapping("/signUp/userEmailAlreadyExist")
-    public ResponseEntity<Boolean> isEmailAlreadyExists(@RequestBody Map<String, String> response) {
-        return ResponseEntity.ok().body(  emailService.isEmailAlreadyExists(response.get("email")));
+    public ResponseEntity<Integer> isEmailAlreadyExists(@RequestBody Map<String, String> response) {
+        int status = 0;
+        if (emailService.isEmailAlreadyExists(response.get("email"))) {
+            status = 1;
+        }
+        return ResponseEntity.ok().body(status);
     }
 
 }

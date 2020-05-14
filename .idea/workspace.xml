@@ -4,11 +4,6 @@
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/EmailServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/EmailServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/UserServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/UserServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/AuthController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +161,7 @@
       <workItem from="1589290933027" duration="1025000" />
       <workItem from="1589292629382" duration="466000" />
       <workItem from="1589293132582" duration="9705000" />
-      <workItem from="1589328029100" duration="11089000" />
+      <workItem from="1589328029100" duration="12624000" />
     </task>
     <servers />
   </component>
