@@ -35,7 +35,6 @@ public class UserModel {
     String username;
     int status;
 
-
     public static UserModel entityToModel(User user) {
         System.out.println("User Id = " + user.getId());
         UserModel um = new UserModel();
@@ -44,15 +43,15 @@ public class UserModel {
         Title titleByTitleId = user.getTitleByTitleId();
         String title = titleByTitleId.getTitle();
         for (UserType value : UserType.values()) {
-            if (user.getUserTypeId()==value.getId()){
+            if (user.getUserTypeId() == value.getId()) {
                 um.setUserType(value);
             }
         }
         um.setTitle(title);
         um.setGender(user.getGenderByGenderId().getGender());
-        um.setFName(user.getfName());
-        um.setLName(user.getlName());
-        um.setSName(user.getsName());
+        um.setFName(user.getFName());
+        um.setLName(user.getLName());
+        um.setSName(user.getSName());
         um.setFullName(user.getFullName());
         um.setActiveState(user.getActiveState());
         um.setCountry(user.getCountryByCountryId().getCountry());
@@ -144,6 +143,4 @@ public class UserModel {
         users.forEach(user -> l.add(entityToModel(user)));
         return l;
     }
-
-
 }

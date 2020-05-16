@@ -31,10 +31,15 @@ public class LocationController {
     PostOfficeBoxService postOfficeBoxService;
 
     @GetMapping("/getAllCountries")
-    public ResponseEntity<Map<Integer, String>> getAllCountries() {
-        Map<Integer, String> c = new HashMap<>();
-        countryService.getAll().forEach(country -> c.put(country.getId(), country.getCountry()));
-        return ResponseEntity.ok().body(c);
+    public ResponseEntity<List<Map<String, String>>> getAllCountries() {
+        List<Map<String, String>> l = new ArrayList<>();
+        countryService.getAll().forEach(country -> {
+            Map<String, String> c = new HashMap<>();
+            c.put("id",country.getId()+"");
+            c.put("country", country.getCountry());
+            l.add(c);
+        });
+        return ResponseEntity.ok().body(l);
     }
 
     @GetMapping("/getCountryById/{id}")

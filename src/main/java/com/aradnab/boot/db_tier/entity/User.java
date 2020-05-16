@@ -129,31 +129,31 @@ public class User {
 
     @Basic
     @Column(name = "f_name", nullable = true, length = 60)
-    public String getfName() {
+    public String getFName() {
         return fName;
     }
 
-    public void setfName(String fName) {
+    public void setFName(String fName) {
         this.fName = fName;
     }
 
     @Basic
     @Column(name = "l_name", nullable = true, length = 60)
-    public String getlName() {
+    public String getLName() {
         return lName;
     }
 
-    public void setlName(String lName) {
+    public void setLName(String lName) {
         this.lName = lName;
     }
 
     @Basic
     @Column(name = "s_name", nullable = true, length = 60)
-    public String getsName() {
+    public String getSName() {
         return sName;
     }
 
-    public void setsName(String sName) {
+    public void setSName(String sName) {
         this.sName = sName;
     }
 

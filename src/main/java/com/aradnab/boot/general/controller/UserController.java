@@ -12,10 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -65,9 +62,11 @@ public class UserController {
 //        END::FIND User type id
         u.setUserTypeId(userType.getId());
         u.setUserId(userService.generateUserID(userModel.getUserType()));
-        u.setfName(userModel.getFName());
-        u.setlName(userModel.getLName());
-        u.setsName(userModel.getSName());
+        u.setFName(userModel.getFName());
+        u.setLName(userModel.getLName());
+        System.out.println("f name = "+userModel.getFName());
+        System.out.println("l name = "+userModel.getLName());
+        u.setSName(userModel.getSName());
         u.setFullName(userModel.getFullName());
         u.setActiveState(userModel.getActiveState());
         u.setSavedAt(d);
@@ -131,10 +130,15 @@ public class UserController {
     }
 
     @GetMapping("/title/getAll")
-    public ResponseEntity<Map<Integer, String>> getAllTitles() {
-        Map<Integer, String> m = new HashMap<>();
-        titleService.getAll().forEach(title -> m.put(title.getId(), title.getTitle()));
-        return ResponseEntity.ok().body(m);
+    public ResponseEntity<List<Map<String, String>>> getAllTitles() {
+        List<Map<String, String>> l = new ArrayList<>();
+        titleService.getAll().forEach(title -> {
+            Map<String, String> m = new HashMap<>();
+            m.put("id", title.getId() + "");
+            m.put("title", title.getTitle());
+            l.add(m);
+        });
+        return ResponseEntity.ok().body(l);
     }
 
 }
