@@ -80,21 +80,21 @@ public class AuthController {
     }
 
     @PostMapping("/signIn/fb")
-    public ResponseEntity<UserModel> signInWithFb(@RequestBody Map<String, String> response) {
-        String fbId = response.get("fbId");
+    public ResponseEntity<UserModel> signInWithFb(@RequestBody  AuthenticatedUserModel response) {
+        String fbId = response.getFacebookId();
         User auth = loginCredentialFbService.getAuth(fbId);
         UserModel userModel = UserModel.entityToModel(auth);
         return ResponseEntity.ok().body(userModel);
     }
 
     @PostMapping("/signIn/google")
-    public ResponseEntity<UserModel> signInWithGoogle(@RequestBody Map<String, String> response) {
-        return ResponseEntity.ok().body(UserModel.entityToModel(loginCredentialGoogleService.getAuth(response.get("gId"))));
+    public ResponseEntity<UserModel> signInWithGoogle(@RequestBody AuthenticatedUserModel response) {
+        return ResponseEntity.ok().body(UserModel.entityToModel(loginCredentialGoogleService.getAuth(response.getGoogleId())));
     }
 
     @PostMapping("/signIn/normal")
-    public ResponseEntity<UserModel> signIn(@RequestBody Map<String, String> response) {
-        return ResponseEntity.ok().body(UserModel.entityToModel(loginCredentialNormalService.getAuth(response.get("un"), response.get("pw"))));
+    public ResponseEntity<UserModel> signIn(@RequestBody  AuthenticatedUserModel response) {
+        return ResponseEntity.ok().body(UserModel.entityToModel(loginCredentialNormalService.getAuth(response.getUserName(), response.getPassword())));
     }
 
     @PostMapping("/signUp/userNameAlreadyExist")
