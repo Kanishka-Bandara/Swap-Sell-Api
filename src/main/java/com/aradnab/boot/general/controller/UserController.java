@@ -115,6 +115,64 @@ public class UserController {
 //        END::Create User Contact Number
         return get(nu.getId());
     }
+    //    BEGIN::EDIT USER
+
+    @PostMapping("/edit")
+    public ResponseEntity<UserModel> edit(@RequestBody UserModel userModel) {
+        Date d = new Date();
+        boolean isUserModified = false;
+        User userOld = userService.getByID(userModel.getId());
+        Gender genderOld = userOld.getGenderByGenderId();
+        if (!userOld.getTitleByTitleId().getTitle().trim().equals(userModel.getTitle().trim())) {
+            Title title = titleService.getByTitleName(userModel.getTitle().trim());
+            userOld.setTitleId(title.getId());
+            userOld.setTitleByTitleId(title);
+            isUserModified = true;
+        }
+        if (!userOld.getGenderByGenderId().getGender().trim().equals(userModel.getGender().trim())) {
+            Gender gender = genderService.getGenderByName(userModel.getGender());
+            userOld.setGenderId(gender.getId());
+            userOld.setGenderByGenderId(gender);
+            isUserModified = true;
+        }
+        if (!userOld.getCountryByCountryId().getCountry().trim().equals(userModel.getCountry().trim())) {
+            Country country = countryService.getByName(userModel.getCountry());
+            userOld.setCountryId(country.getId());
+            userOld.setCountryByCountryId(country);
+            isUserModified = true;
+        }
+        if (!userOld.getUserId().trim().equals(userModel.getUserId().trim())) {
+            userOld.setUserId(userModel.getUserId());
+            isUserModified = true;
+        }
+        if (!userOld.getFName().trim().equals(userModel.getFName().trim())) {
+            userOld.setFName(userModel.getFName());
+            isUserModified = true;
+        }
+        if (!userOld.getLName().trim().equals(userModel.getLName().trim())) {
+            userOld.setLName(userModel.getLName());
+            isUserModified = true;
+        }
+        if (!userOld.getSName().equals(userModel.getSName().trim())) {
+            userOld.setSName(userModel.getSName());
+            isUserModified = true;
+        }
+        if (userOld.getFullName().equals(userModel.getFullName().trim())) {
+            userOld.setFullName(userModel.getFullName());
+            isUserModified = true;
+        }
+        if (userOld.getActiveState() != userModel.getActiveState()) {
+            userOld.setActiveState(userModel.getActiveState());
+            isUserModified = true;
+        }
+        if (isUserModified) {
+            userOld.setLastUpdatedAt(d);
+            return ResponseEntity.ok().body(UserModel.entityToModel(userService.update(userOld)));
+        }
+//        END::Create User Contact Number
+        return null;
+    }
+    //    END::EDIT USER
 
     @GetMapping("/getAll")
     public ResponseEntity<List<UserModel>> getAll() {

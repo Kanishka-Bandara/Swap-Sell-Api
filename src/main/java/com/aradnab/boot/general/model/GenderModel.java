@@ -3,10 +3,7 @@ package com.aradnab.boot.general.model;
 import com.aradnab.boot.db_tier.entity.User;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -39,6 +36,16 @@ public class GenderModel {
         List<GenderModel> models = new ArrayList<>();
         for (com.aradnab.boot.db_tier.entity.Gender entity : entities) {
             models.add(dbGenderToModelGender(entity));
+        }
+        return models;
+    }
+    public static List<Map<String, String>> dbGenderToModelGenderMapList(List<com.aradnab.boot.db_tier.entity.Gender> entities) {
+        List<Map<String, String>> models = new ArrayList<>();
+        for (com.aradnab.boot.db_tier.entity.Gender entity : entities) {
+            Map<String, String> m = new HashMap<>();
+            m.put("id", entity.getId() + "");
+            m.put("gender", entity.getGender());
+            models.add(m);
         }
         return models;
     }

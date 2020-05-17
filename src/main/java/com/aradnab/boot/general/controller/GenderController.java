@@ -20,8 +20,8 @@ public class GenderController {
     GenderService service = new GenderService();
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<GenderModel>> getAll() {
-        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(service.getAll()));
+    public ResponseEntity<List<Map<String, String>>> getAll() {
+        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGenderMapList(service.getAll()));
     }
 
     @GetMapping("/getGenderByID/{id}")
