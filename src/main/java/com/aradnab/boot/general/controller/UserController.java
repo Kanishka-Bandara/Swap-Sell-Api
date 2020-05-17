@@ -1,6 +1,8 @@
 package com.aradnab.boot.general.controller;
 
+import com.aradnab.boot.config.ResourceUrl;
 import com.aradnab.boot.config.Status;
+import com.aradnab.boot.configoration.DefaultConfiguration;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.model.UserModel;
@@ -64,8 +66,8 @@ public class UserController {
         u.setUserId(userService.generateUserID(userModel.getUserType()));
         u.setFName(userModel.getFName());
         u.setLName(userModel.getLName());
-        System.out.println("f name = "+userModel.getFName());
-        System.out.println("l name = "+userModel.getLName());
+        System.out.println("f name = " + userModel.getFName());
+        System.out.println("l name = " + userModel.getLName());
         u.setSName(userModel.getSName());
         u.setFullName(userModel.getFullName());
         u.setActiveState(userModel.getActiveState());
@@ -140,5 +142,19 @@ public class UserController {
         });
         return ResponseEntity.ok().body(l);
     }
+
+    @PostMapping("/updateProfilePicture")
+    public ResponseEntity updateProfilePicture(@RequestBody Map<String, String> body) throws Exception {
+        String url = imageService.writeProfileImage(body);
+        String userId = body.get("userId");
+        Image img = userService.getByID(Integer.parseInt(userId)).getImageByImageId();
+        img.setImgUrl(url);
+        Image update = imageService.update(img);
+        Map<String, String> response = new HashMap<>();
+        response.put("profilePicUrl", ResourceUrl.VIRTUAL_HOST_URL + update.getImgUrl());
+        response.put("userId", userId);
+        return ResponseEntity.ok().body(response);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.aradnab.boot.general.model;
 
+import com.aradnab.boot.config.ResourceUrl;
 import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.Title;
 import com.aradnab.boot.db_tier.entity.User;
@@ -55,7 +56,12 @@ public class UserModel {
         um.setFullName(user.getFullName());
         um.setActiveState(user.getActiveState());
         um.setCountry(user.getCountryByCountryId().getCountry());
-        um.setProfilePicUrl(user.getImageByImageId().getImgUrl());
+        String imgUrl = user.getImageByImageId().getImgUrl();
+        if (imgUrl.contains("http")) {
+            um.setProfilePicUrl(imgUrl);
+        } else {
+            um.setProfilePicUrl(ResourceUrl.VIRTUAL_HOST_URL +imgUrl);
+        }
 //        BEGIN::Setting Emails
         if (user.getEmailsById() != null) {
             List<EmailModel> emails = new ArrayList<>();

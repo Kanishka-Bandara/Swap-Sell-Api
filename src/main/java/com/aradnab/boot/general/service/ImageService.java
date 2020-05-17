@@ -9,11 +9,9 @@ import com.aradnab.boot.general.service.service_controller.ImageServiceInterface
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -26,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 
 @Service
 @Transactional
@@ -36,7 +33,6 @@ public class ImageService implements ImageServiceInterface {
     private ImageRepository repository;
     @Autowired
     private EntityManager em;
-
     @Override
     public Image create(Image image) {
         image.setSavedAt(new Date());
@@ -89,10 +85,12 @@ public class ImageService implements ImageServiceInterface {
     @Override
     public String writeProfileImage(Map<String, String> body) throws Exception {
         String encodedImage = body.get("data");
-        String fileName = body.get("userId")+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+body.get("name");
-        String imgPath = ResourceUrl.WRITABLE_PROFILE_DIR + "/"+fileName;
-        writeImage(encodedImage,imgPath);
-        return fileName;
+        String userId = body.get("userId");
+        String fileName = userId+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+body.get("profilePicName");
+        String writable_imgPath = ResourceUrl.WRITABLE_PROFILE_DIR + "/"+fileName;
+        String viewed_imgPath =    ResourceUrl.VIRTUAL_PROFILE_DIR+"/"+fileName;
+        writeImage(encodedImage,writable_imgPath);
+        return viewed_imgPath;
     }
 
     @Override
@@ -105,7 +103,6 @@ public class ImageService implements ImageServiceInterface {
     @Override
     public void writeImage(MultipartFile file) throws Exception {
         String uploadDir = System.getProperty("user.dir") + "\\uploads\\prof_img\\" + file.getOriginalFilename();
-        System.out.println(uploadDir);
         File file1 = new File(uploadDir);
         file1.createNewFile();
         FileOutputStream stream = new FileOutputStream(file1);
