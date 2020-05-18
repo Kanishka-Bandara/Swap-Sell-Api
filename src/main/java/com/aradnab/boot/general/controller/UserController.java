@@ -2,13 +2,13 @@ package com.aradnab.boot.general.controller;
 
 import com.aradnab.boot.config.ResourceUrl;
 import com.aradnab.boot.config.Status;
-import com.aradnab.boot.configoration.DefaultConfiguration;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.model.UserModel;
 import com.aradnab.boot.general.service.*;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import com.aradnab.boot.general.service.service_controller.UserType;
+import com.aradnab.boot.validator.TextValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -123,41 +123,41 @@ public class UserController {
         boolean isUserModified = false;
         User userOld = userService.getByID(userModel.getId());
         Gender genderOld = userOld.getGenderByGenderId();
-        if (!userOld.getTitleByTitleId().getTitle().trim().equals(userModel.getTitle().trim())) {
-            Title title = titleService.getByTitleName(userModel.getTitle().trim());
+        if (!userOld.getTitleByTitleId().getTitle().equals(userModel.getTitle())) {
+            Title title = titleService.getByTitleName(userModel.getTitle());
             userOld.setTitleId(title.getId());
             userOld.setTitleByTitleId(title);
             isUserModified = true;
         }
-        if (!userOld.getGenderByGenderId().getGender().trim().equals(userModel.getGender().trim())) {
+        if (!userOld.getGenderByGenderId().getGender().equals(userModel.getGender())) {
             Gender gender = genderService.getGenderByName(userModel.getGender());
             userOld.setGenderId(gender.getId());
             userOld.setGenderByGenderId(gender);
             isUserModified = true;
         }
-        if (!userOld.getCountryByCountryId().getCountry().trim().equals(userModel.getCountry().trim())) {
+        if (!userOld.getCountryByCountryId().getCountry().equals(userModel.getCountry())) {
             Country country = countryService.getByName(userModel.getCountry());
             userOld.setCountryId(country.getId());
             userOld.setCountryByCountryId(country);
             isUserModified = true;
         }
-        if (!userOld.getUserId().trim().equals(userModel.getUserId().trim())) {
+        if (!userOld.getUserId().equals(userModel.getUserId())) {
             userOld.setUserId(userModel.getUserId());
             isUserModified = true;
         }
-        if (!userOld.getFName().trim().equals(userModel.getFName().trim())) {
+        if (!TextValidator.equals(userOld.getFName(),userModel.getFName())) {
             userOld.setFName(userModel.getFName());
             isUserModified = true;
         }
-        if (!userOld.getLName().trim().equals(userModel.getLName().trim())) {
+        if (!TextValidator.equals(userOld.getLName(),userModel.getLName())) {
             userOld.setLName(userModel.getLName());
             isUserModified = true;
         }
-        if (!userOld.getSName().equals(userModel.getSName().trim())) {
+        if (!TextValidator.equals(userOld.getSName(),userModel.getSName())) {
             userOld.setSName(userModel.getSName());
             isUserModified = true;
         }
-        if (userOld.getFullName().equals(userModel.getFullName().trim())) {
+        if (!TextValidator.equals(userOld.getFullName(),userModel.getFullName())) {
             userOld.setFullName(userModel.getFullName());
             isUserModified = true;
         }

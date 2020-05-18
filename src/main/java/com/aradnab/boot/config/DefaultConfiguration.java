@@ -1,4 +1,4 @@
-package com.aradnab.boot.configoration;
+package com.aradnab.boot.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
