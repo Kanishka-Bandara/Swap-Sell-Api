@@ -3,7 +3,6 @@ package com.aradnab.boot.general.controller;
 import com.aradnab.boot.db_tier.entity.District;
 import com.aradnab.boot.db_tier.entity.PostOfficeBox;
 import com.aradnab.boot.db_tier.entity.Province;
-import com.aradnab.boot.general.model.AddressModel;
 import com.aradnab.boot.general.service.CountryService;
 import com.aradnab.boot.general.service.DistrictService;
 import com.aradnab.boot.general.service.PostOfficeBoxService;
@@ -11,10 +10,7 @@ import com.aradnab.boot.general.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -35,7 +31,7 @@ public class LocationController {
         List<Map<String, String>> l = new ArrayList<>();
         countryService.getAll().forEach(country -> {
             Map<String, String> c = new HashMap<>();
-            c.put("id",country.getId()+"");
+            c.put("id", country.getId() + "");
             c.put("country", country.getCountry());
             l.add(c);
         });
@@ -68,6 +64,19 @@ public class LocationController {
         return ResponseEntity.ok().body(c);
     }
 
+    @PostMapping("/getAllProvincesByCountry")
+    public ResponseEntity<List<Map<String, String>>> getProvincesByCountry(@RequestBody Map<String, String> request) {
+        List<Map<String, String>> l = new ArrayList<>();
+        Collection<Province> provincesById = countryService.getByName(request.get("country")).getProvincesById();
+        provincesById.forEach(province -> {
+            Map<String, String> c = new HashMap<>();
+            c.put("id", province.getId() + "");
+            c.put("province", province.getProvince());
+            l.add(c);
+        });
+        return ResponseEntity.ok().body(l);
+    }
+
     @GetMapping("/getAllDistricts")
     public ResponseEntity<Map<Integer, String>> getAllDistricts() {
         Map<Integer, String> c = new HashMap<>();
@@ -86,6 +95,19 @@ public class LocationController {
         Collection<District> districtsById = provinceService.getByID(id).getDistrictsById();
         districtsById.forEach(district -> c.put(district.getId(), district.getDistrict()));
         return ResponseEntity.ok().body(c);
+    }
+
+    @PostMapping("/getAllDistrictsByProvince")
+    public ResponseEntity<List<Map<String, String>>> getDistrictsByProvinceId(@RequestBody Map<String, String> request) {
+        List<Map<String, String>> l = new ArrayList<>();
+        Collection<District> districtsById = provinceService.getByName(request.get("province")).getDistrictsById();
+        districtsById.forEach(d -> {
+        Map<String, String> c = new HashMap<>();
+            c.put("id",d.getId()+"");
+            c.put("district", d.getDistrict());
+            l.add(c);
+        });
+        return ResponseEntity.ok().body(l);
     }
 
     @GetMapping("/getAllPostalCodes")
@@ -109,6 +131,14 @@ public class LocationController {
     public ResponseEntity<List<Map<String, String>>> getAllPostalCodesByDistrictId(@PathVariable("id") int id) {
         List<Map<String, String>> l = new ArrayList<>();
         Collection<PostOfficeBox> postOfficeBoxesById = districtService.getByID(id).getPostOfficeBoxesById();
+        postOfficeBoxesById.forEach(postOfficeBox -> l.add(getPOBByMap(postOfficeBox)));
+        return ResponseEntity.ok().body(l);
+    }
+
+    @PostMapping("/getAllPostalCodesByDistrict")
+    public ResponseEntity<List<Map<String, String>>> getAllPostalCodesByDistrict(@RequestBody Map<String, String> request) {
+        List<Map<String, String>> l = new ArrayList<>();
+        Collection<PostOfficeBox> postOfficeBoxesById = districtService.getByName(request.get("district")).getPostOfficeBoxesById();
         postOfficeBoxesById.forEach(postOfficeBox -> l.add(getPOBByMap(postOfficeBox)));
         return ResponseEntity.ok().body(l);
     }

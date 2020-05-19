@@ -70,10 +70,10 @@ public class ProvinceService implements ProvinceServiceInterface {
             throw new ResourceNotFoundException("Record Not Found with id : " + id);
         }
     }
-
+    
     @Override
     public Province getByName(String name) {
-        List<Province> l = em.createQuery("from Province  x where x.province = " + name + " and x.status!=" + Status.DELETE_STATUS, Province.class).getResultList();
+        List<Province> l = em.createQuery("from Province  x where x.province = '" + name + "' and x.status!=" + Status.DELETE_STATUS, Province.class).getResultList();
         if (l.size() > 0) {
             return l.get(0);
         } else {
