@@ -10,4 +10,8 @@ public interface ImageServiceInterface extends ServiceController<Image> {
     String writeProfileImage(Map<String,String> body) throws Exception;
     void writeImage(String base64EncodedImage,String path) throws Exception;
     void writeImage(MultipartFile file) throws Exception;
+
+    String getSendAbleProfileImageUrl(String fileName);
+
+    String getSendAbleProductImageUrl(String fileName);
 }

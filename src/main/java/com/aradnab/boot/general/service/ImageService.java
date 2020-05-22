@@ -109,5 +109,15 @@ public class ImageService implements ImageServiceInterface {
         stream.write(file.getBytes());
         stream.close();
     }
+
+    @Override
+    public String getSendAbleProfileImageUrl(String fileName){
+        return ResourceUrl.VIRTUAL_PROFILE_DIR+"/"+fileName;
+    }
+
+    @Override
+    public String getSendAbleProductImageUrl(String fileName){
+        return ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+fileName;
+    }
 }
 
