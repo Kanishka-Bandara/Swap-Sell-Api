@@ -12,9 +12,7 @@ import com.aradnab.boot.db_tier.entity.ProductSubCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -60,5 +58,20 @@ public class ProductCategoryController {
         sc.setLastUpdatedAt(d);
         ProductSubCategory headCategory = productSubCategoryService.create(sc);
         return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(headCategory));
+    }
+
+    @GetMapping("/head/get/{id}")
+    public ResponseEntity<HeadCategoryModel> getHeadCategoryModelById(@PathVariable("id") int id) {
+        return ResponseEntity.ok().body(HeadCategoryModel.defaultModel.entityToModel(productHeadCategoryService.getByID(id)));
+    }
+
+    @GetMapping("/main/get/{id}")
+    public ResponseEntity<MainCategoryModel> getMainCategoryModelById(@PathVariable("id") int id) {
+        return ResponseEntity.ok().body(MainCategoryModel.defaultModel.entityToModel(productMainCategoryService.getByID(id)));
+    }
+
+    @GetMapping("/sub/get/{id}")
+    public ResponseEntity<SubCategoryModel> getSubCategoryModelById(@PathVariable("id") int id) {
+        return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(productSubCategoryService.getByID(id)));
     }
 }

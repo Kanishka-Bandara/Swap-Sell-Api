@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/ShopModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ShopModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductCategoryController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +182,7 @@
       <workItem from="1590132312728" duration="11742000" />
       <workItem from="1590206502652" duration="603000" />
       <workItem from="1590225994854" duration="1248000" />
-      <workItem from="1590311326274" duration="11347000" />
+      <workItem from="1590311326274" duration="12741000" />
     </task>
     <servers />
   </component>
