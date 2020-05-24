@@ -1,0 +1,64 @@
+package com.aradnab.boot.consumer.controller;
+
+import com.aradnab.boot.consumer.model.HeadCategoryModel;
+import com.aradnab.boot.consumer.model.MainCategoryModel;
+import com.aradnab.boot.consumer.model.SubCategoryModel;
+import com.aradnab.boot.consumer.service.ProductHeadCategoryService;
+import com.aradnab.boot.consumer.service.ProductMainCategoryService;
+import com.aradnab.boot.consumer.service.ProductSubCategoryService;
+import com.aradnab.boot.db_tier.entity.ProductHeadCategory;
+import com.aradnab.boot.db_tier.entity.ProductMainCategory;
+import com.aradnab.boot.db_tier.entity.ProductSubCategory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Date;
+
+@Controller
+@RequestMapping("/category")
+public class ProductCategoryController {
+
+    @Autowired
+    ProductHeadCategoryService productHeadCategoryService;
+    @Autowired
+    ProductMainCategoryService productMainCategoryService;
+    @Autowired
+    ProductSubCategoryService productSubCategoryService;
+
+    @PostMapping("/head/create")
+    public ResponseEntity<HeadCategoryModel> createHeadCategoryModel(@RequestBody HeadCategoryModel headCategoryModel) {
+        Date d = new Date();
+        ProductHeadCategory hc = new ProductHeadCategory();
+        hc.setCategoryName(headCategoryModel.getCatName());
+        hc.setSavedAt(d);
+        hc.setLastUpdatedAt(d);
+        ProductHeadCategory headCategory = productHeadCategoryService.create(hc);
+        return ResponseEntity.ok().body(HeadCategoryModel.defaultModel.entityToModel(headCategory));
+    }
+
+    @PostMapping("/main/create")
+    public ResponseEntity<MainCategoryModel> saveMainCategoryModel(@RequestBody MainCategoryModel mainCategoryModel) {
+        Date d = new Date();
+        ProductMainCategory mc = new ProductMainCategory();
+        mc.setCategoryName(mainCategoryModel.getCatName());
+        mc.setSavedAt(d);
+        mc.setLastUpdatedAt(d);
+        ProductMainCategory headCategory = productMainCategoryService.create(mc);
+        return ResponseEntity.ok().body(MainCategoryModel.defaultModel.entityToModel(headCategory));
+    }
+
+    @PostMapping("/sub/create")
+    public ResponseEntity<SubCategoryModel> saveSubCategoryModel(@RequestBody SubCategoryModel subCategoryModel) {
+        Date d = new Date();
+        ProductSubCategory sc = new ProductSubCategory();
+        sc.setCategoryName(subCategoryModel.getCatName());
+        sc.setSavedAt(d);
+        sc.setLastUpdatedAt(d);
+        ProductSubCategory headCategory = productSubCategoryService.create(sc);
+        return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(headCategory));
+    }
+}

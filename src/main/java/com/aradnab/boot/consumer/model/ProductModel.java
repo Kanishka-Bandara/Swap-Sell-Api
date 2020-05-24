@@ -1,5 +1,6 @@
-package com.aradnab.boot.general.model;
+package com.aradnab.boot.consumer.model;
 
+import com.aradnab.boot.config.DefaultModel;
 import com.aradnab.boot.config.Status;
 import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.service.ImageService;
@@ -15,11 +16,10 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductModel {
+public class ProductModel extends DefaultModel<ProductModel, DeliveryProduct> {
 
     @Autowired
     static ImageService imageService;
-
     int id;
     String uniqueID;
     String name;
@@ -32,7 +32,7 @@ public class ProductModel {
     String model;
     int brandId;//
     String brand;
-    List<Map<Integer, String>> images;//
+    List<String> images;
     String description;
     String barcode;
     Map<String, String> specifications;
@@ -57,24 +57,23 @@ public class ProductModel {
     int isFavorite;
     int status;
 
-    public static ProductModel entityToModel(DeliveryProduct deliveryProduct) {
+    @Override
+    public ProductModel entityToModel(DeliveryProduct deliveryProduct) {
         Product product = deliveryProduct.getProductByProductId();
         ProductSubCategory subCategory = product.getProductSubCategoryByProductSubCategoryId();
         ProductMainCategory mainCategory = subCategory.getProductMainCategoryByProductMainCategoryId();
         ProductHeadCategory headCategory = mainCategory.getProductHeadCategoryByProductHeadCategoryId();
-        List<Map<Integer, String>> images = new ArrayList<>();
+        List<String> images = new ArrayList<>();
         product.getProductImagesById().forEach(productImage -> {
             if (productImage.getStatus() != Status.DELETE_STATUS) {
                 Image image = productImage.getImageByImageId();
-                Map<Integer, String> m = new HashMap<>();
-                m.put(image.getId(), imageService.getSendAbleProductImageUrl(image.getImgUrl()));
-                images.add(m);
+                images.add(imageService.getSendAbleProductImageUrl(image.getImgUrl()));
             }
         });
         Map<String, String> specifications = new HashMap<>();
         product.getSpecificationsById().forEach(specification -> {
             if (specification.getStatus() != Status.DELETE_STATUS) {
-                specifications.put(specification.getKey(),specification.getValue());
+                specifications.put(specification.getKey(), specification.getValue());
             }
         });
         Discount d = null;
@@ -114,26 +113,6 @@ public class ProductModel {
         pm.setIsFavorite(0);//TODO::connect with suitable controller
         pm.setStatus(deliveryProduct.getStatus());
         return pm;
-    }
-
-    public static List<ProductModel> entityToModel(List<DeliveryProduct> list) {
-        List<ProductModel> l = new ArrayList<>();
-        list.forEach(deliveryProduct -> {
-            if (deliveryProduct.getStatus() == com.aradnab.boot.config.Status.LIVE_ACTIVE_STATUS) {
-                l.add(entityToModel(deliveryProduct));
-            }
-        });
-        return l;
-    }
-
-    public static List<ProductModel> entityToModel(Collection<DeliveryProduct> list) {
-        List<ProductModel> l = new ArrayList<>();
-        list.forEach(deliveryProduct -> {
-            if (deliveryProduct.getStatus() == com.aradnab.boot.config.Status.LIVE_ACTIVE_STATUS) {
-                l.add(entityToModel(deliveryProduct));
-            }
-        });
-        return l;
     }
 
 }

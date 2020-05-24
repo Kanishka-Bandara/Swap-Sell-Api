@@ -1,7 +1,6 @@
-package com.aradnab.boot.general.model;
+package com.aradnab.boot.consumer.model;
 
 import com.aradnab.boot.db_tier.entity.Shop;
-import com.aradnab.boot.db_tier.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
