@@ -5,4 +5,5 @@ import com.aradnab.boot.general.service.service_controller.initial.ServiceContro
 import org.springframework.data.repository.query.Param;
 
 public interface ProductDealingTypeServiceInterface extends ServiceController<ProductDealingType> {
+    ProductDealingType getByName(String type);
 }

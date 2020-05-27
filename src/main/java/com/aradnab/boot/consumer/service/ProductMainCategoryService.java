@@ -57,6 +57,17 @@ public class ProductMainCategoryService implements ProductMainCategoryServiceInt
         }
     }
 
+
+    @Override
+    public ProductMainCategory getByName(String name) {
+        List<ProductMainCategory> l = em.createQuery("from ProductMainCategory  x where x.categoryName = '" + name + "' and x.status!=" + Status.DELETE_STATUS, ProductMainCategory.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public CRUDStatus delete(int id) {
         List<ProductMainCategory> l = em.createQuery("from ProductMainCategory  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, ProductMainCategory.class).getResultList();

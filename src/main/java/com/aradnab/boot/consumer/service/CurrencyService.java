@@ -58,6 +58,16 @@ public class CurrencyService implements CurrencyServiceInterface {
     }
 
     @Override
+    public Currency getByCurrency(String currency) {
+        List<Currency> l = em.createQuery("from Currency  x where x.currency = '" + currency + "' and x.status!=" + Status.DELETE_STATUS, Currency.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public CRUDStatus delete(int id) {
         List<Currency> l = em.createQuery("from Currency  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, Currency.class).getResultList();
         if (l.size() > 0) {

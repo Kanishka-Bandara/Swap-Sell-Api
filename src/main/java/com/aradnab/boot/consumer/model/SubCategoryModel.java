@@ -18,12 +18,19 @@ public class SubCategoryModel extends DefaultModel<SubCategoryModel, ProductSubC
     int catID;
     String catName;
     String imgPath;
-    MainCategoryModel mainCategory;
+    int mainCategoryId;
+//    MainCategoryModel mainCategory;
     byte status;
     public static SubCategoryModel defaultModel;
 
     @Override
     public SubCategoryModel entityToModel(ProductSubCategory service) {
-        return new SubCategoryModel(service.getId(), service.getCategoryName(), null, MainCategoryModel.defaultModel.entityToModel(service.getProductMainCategoryByProductMainCategoryId()), service.getStatus());
+        return new SubCategoryModel(
+                service.getId(),
+                service.getCategoryName(),
+                null,
+                service.getProductMainCategoryId(),
+                service.getStatus()
+        );
     }
 }

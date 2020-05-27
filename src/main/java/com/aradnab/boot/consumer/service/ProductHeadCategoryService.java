@@ -58,6 +58,15 @@ public class ProductHeadCategoryService implements ProductHeadCategoryServiceInt
     }
 
     @Override
+    public ProductHeadCategory getByName(String name) {
+        List<ProductHeadCategory> l = em.createQuery("from ProductHeadCategory  x where x.categoryName = '" + name + "' and x.status!=" + Status.DELETE_STATUS, ProductHeadCategory.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            return null;
+        }
+    }
+    @Override
     public CRUDStatus delete(int id) {
         List<ProductHeadCategory> l = em.createQuery("from ProductHeadCategory  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, ProductHeadCategory.class).getResultList();
         if (l.size() > 0) {

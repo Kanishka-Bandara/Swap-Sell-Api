@@ -1,10 +1,10 @@
 package com.aradnab.boot.consumer.service;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
+import com.aradnab.boot.consumer.service.service_controller.SpecificationServiceInterface;
 import com.aradnab.boot.db_tier.entity.Specification;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.SpecificationRepository;
-import com.aradnab.boot.general.service.service_controller.SpecificationServiceInterface;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +55,12 @@ public class SpecificationService implements SpecificationServiceInterface {
             throw new ResourceNotFoundException("Record Not Found with id : " + id);
         }
     }
+
+    @Override
+    public List<Specification> getByProductId(int productId) {
+        return em.createQuery("from Specification  x where x.productId='"+productId+"' and x.status!=" + Status.DELETE_STATUS, Specification.class).getResultList();
+    }
+
 
     @Override
     public CRUDStatus delete(int id) {

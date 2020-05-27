@@ -21,7 +21,8 @@ public class MainCategoryModel extends DefaultModel<MainCategoryModel, ProductMa
     int catID;
     String catName;
     String imgPath;
-    HeadCategoryModel headCategory;
+    //    HeadCategoryModel headCategory;
+    int headCategoryId;
     List<SubCategoryModel> subCategories;
     byte status;
     public static MainCategoryModel defaultModel;
@@ -38,7 +39,8 @@ public class MainCategoryModel extends DefaultModel<MainCategoryModel, ProductMa
                 service.getId(),
                 service.getCategoryName(),
                 null,
-                HeadCategoryModel.defaultModel.entityToModel(service.getProductHeadCategoryByProductHeadCategoryId()),
+                service.getProductHeadCategoryId(),
+//                HeadCategoryModel.defaultModel.entityToModel(service.getProductHeadCategoryByProductHeadCategoryId()),
                 SubCategoryModel.defaultModel.entityToModel(sc),
                 service.getStatus()
         );

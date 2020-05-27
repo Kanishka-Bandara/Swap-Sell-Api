@@ -21,9 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
@@ -94,6 +92,23 @@ public class ImageService implements ImageServiceInterface {
     }
 
     @Override
+    public List<String> writeProductImages(int productId, List<String> images){
+        List<String> paths = new ArrayList<>();
+        images.forEach(encodedImage -> {
+            String fileName = productId+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+".jpg";
+            String writable_imgPath = ResourceUrl.WRITABLE_PRODUCT_DIR + "/"+fileName;
+            String viewed_imgPath =    ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+fileName;
+            try {
+                writeImage(encodedImage,writable_imgPath);
+                paths.add(writable_imgPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        return paths;
+    }
+
+    @Override
     public void writeImage(String base64EncodedImage, String path) throws Exception {
         byte[] bytes = Base64.decodeBase64(base64EncodedImage);
         Path p = Paths.get(path);
@@ -118,6 +133,15 @@ public class ImageService implements ImageServiceInterface {
     @Override
     public String getSendAbleProductImageUrl(String fileName){
         return ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+fileName;
+    }
+
+    @Override
+    public List<String> getSendAbleProductImageUrl(List<String> files){
+        List<String> imgs = new ArrayList<>();
+        files.forEach(s -> {
+            imgs.add(ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+s);
+        });
+        return imgs;
     }
 }
 

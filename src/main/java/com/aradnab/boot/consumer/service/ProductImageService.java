@@ -58,6 +58,11 @@ public class ProductImageService implements ProductImageServiceInterface {
     }
 
     @Override
+    public List<ProductImage> getByProductId(int productId) {
+        return em.createQuery("from ProductImage  x where x.productId='"+productId+"' and x.status!=" + Status.DELETE_STATUS, ProductImage.class).getResultList();
+    }
+
+    @Override
     public CRUDStatus delete(int id) {
         List<ProductImage> l = em.createQuery("from ProductImage  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, ProductImage.class).getResultList();
         if (l.size() > 0) {

@@ -4,6 +4,28 @@
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/MainCategoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/MainCategoryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ProductModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/SubCategoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/SubCategoryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/CurrencyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/CurrencyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductConditionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductConditionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductDealingTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductDealingTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductHeadCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductHeadCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductMainCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductMainCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductSubCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductSubCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/SpecificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/SpecificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/CurrencyServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/CurrencyServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductConditionServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductConditionServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductDealingTypeServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductDealingTypeServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductHeadCategoryServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductHeadCategoryServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductImageServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductImageServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductMainCategoryServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductMainCategoryServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductSubCategoryServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/ProductSubCategoryServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/SpecificationServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/SpecificationServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/ImageServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/service_controller/ImageServiceInterface.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +204,10 @@
       <workItem from="1590132312728" duration="11742000" />
       <workItem from="1590206502652" duration="603000" />
       <workItem from="1590225994854" duration="1248000" />
-      <workItem from="1590311326274" duration="12741000" />
+      <workItem from="1590311326274" duration="12812000" />
+      <workItem from="1590373801452" duration="2700000" />
+      <workItem from="1590385171805" duration="1946000" />
+      <workItem from="1590562017163" duration="17642000" />
     </task>
     <servers />
   </component>

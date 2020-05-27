@@ -58,6 +58,16 @@ public class ProductConditionService implements ProductConditionServiceInterface
     }
 
     @Override
+    public ProductCondition getByName(String condition) {
+        List<ProductCondition> l = em.createQuery("from ProductCondition  x where x.condition = '" + condition + "' and x.status!=" + Status.DELETE_STATUS, ProductCondition.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            throw new ResourceNotFoundException("Record Not Found with product condition : " + condition);
+        }
+    }
+
+    @Override
     public CRUDStatus delete(int id) {
         List<ProductCondition> l = em.createQuery("from ProductCondition  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, ProductCondition.class).getResultList();
         if (l.size() > 0) {

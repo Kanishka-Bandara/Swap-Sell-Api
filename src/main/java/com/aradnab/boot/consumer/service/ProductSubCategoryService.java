@@ -1,10 +1,10 @@
 package com.aradnab.boot.consumer.service;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
+import com.aradnab.boot.consumer.service.service_controller.ProductSubCategoryServiceInterface;
 import com.aradnab.boot.db_tier.entity.ProductSubCategory;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.ProductSubCategoryRepository;
-import com.aradnab.boot.general.service.service_controller.ProductSubCategoryServiceInterface;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +53,16 @@ public class ProductSubCategoryService implements ProductSubCategoryServiceInter
             return l.get(0);
         } else {
             throw new ResourceNotFoundException("Record Not Found with id : " + id);
+        }
+    }
+
+    @Override
+    public ProductSubCategory getByName(String name) {
+        List<ProductSubCategory> l = em.createQuery("from ProductSubCategory  x where x.categoryName = '" + name + "' and x.status!=" + Status.DELETE_STATUS, ProductSubCategory.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            return null;
         }
     }
 

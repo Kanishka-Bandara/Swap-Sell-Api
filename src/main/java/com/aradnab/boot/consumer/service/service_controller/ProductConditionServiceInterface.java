@@ -5,4 +5,5 @@ import com.aradnab.boot.general.service.service_controller.initial.ServiceContro
 import org.springframework.data.repository.query.Param;
 
 public interface ProductConditionServiceInterface extends ServiceController<ProductCondition> {
+    ProductCondition getByName(String condition);
 }

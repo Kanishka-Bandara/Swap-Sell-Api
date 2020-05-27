@@ -57,6 +57,8 @@ public class ProductModel extends DefaultModel<ProductModel, DeliveryProduct> {
     int isFavorite;
     int status;
 
+    public static ProductModel defaultModel = new ProductModel();
+
     @Override
     public ProductModel entityToModel(DeliveryProduct deliveryProduct) {
         Product product = deliveryProduct.getProductByProductId();

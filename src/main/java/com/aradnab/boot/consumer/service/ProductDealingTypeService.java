@@ -58,6 +58,16 @@ public class ProductDealingTypeService implements ProductDealingTypeServiceInter
     }
 
     @Override
+    public ProductDealingType getByName(String type) {
+        List<ProductDealingType> l = em.createQuery("from ProductDealingType  x where x.type = '" + type + "' and x.status!=" + Status.DELETE_STATUS, ProductDealingType.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            throw new ResourceNotFoundException("Record Not Found with dealing type : " + type);
+        }
+    }
+
+    @Override
     public CRUDStatus delete(int id) {
         List<ProductDealingType> l = em.createQuery("from ProductDealingType  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, ProductDealingType.class).getResultList();
         if (l.size() > 0) {

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/category")
@@ -27,6 +28,7 @@ public class ProductCategoryController {
     @Autowired
     ProductSubCategoryService productSubCategoryService;
 
+    //  BEGIN::Create
     @PostMapping("/head/create")
     public ResponseEntity<HeadCategoryModel> createHeadCategoryModel(@RequestBody HeadCategoryModel headCategoryModel) {
         Date d = new Date();
@@ -60,10 +62,13 @@ public class ProductCategoryController {
         return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(headCategory));
     }
 
+    //    END::CREATE
+//    BEGIN::Get by Id
     @GetMapping("/head/get/{id}")
     public ResponseEntity<HeadCategoryModel> getHeadCategoryModelById(@PathVariable("id") int id) {
         return ResponseEntity.ok().body(HeadCategoryModel.defaultModel.entityToModel(productHeadCategoryService.getByID(id)));
     }
+
 
     @GetMapping("/main/get/{id}")
     public ResponseEntity<MainCategoryModel> getMainCategoryModelById(@PathVariable("id") int id) {
@@ -74,4 +79,23 @@ public class ProductCategoryController {
     public ResponseEntity<SubCategoryModel> getSubCategoryModelById(@PathVariable("id") int id) {
         return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(productSubCategoryService.getByID(id)));
     }
+//    END::Get by Id
+
+//    BEGIN::Get by Name
+    @PostMapping("/head/getByName")
+    public ResponseEntity<HeadCategoryModel> getHeadCategoryModelByName(@RequestBody Map<String,String> request) {
+        return ResponseEntity.ok().body(HeadCategoryModel.defaultModel.entityToModel(productHeadCategoryService.getByName(request.get("name"))));
+    }
+
+    @PostMapping("/main/getByName")
+    public ResponseEntity<MainCategoryModel> getMainCategoryModelByName(@RequestBody Map<String,String> request) {
+        return ResponseEntity.ok().body(MainCategoryModel.defaultModel.entityToModel(productMainCategoryService.getByName(request.get("name"))));
+    }
+
+    @PostMapping("/sub/getByName")
+    public ResponseEntity<SubCategoryModel> getSubCategoryModelByName(@RequestBody Map<String,String> request) {
+        return ResponseEntity.ok().body(SubCategoryModel.defaultModel.entityToModel(productSubCategoryService.getByName(request.get("name"))));
+    }
+//    END::Get by Name
+
 }
