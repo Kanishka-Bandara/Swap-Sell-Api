@@ -38,7 +38,7 @@ public class Specification {
     }
 
     @Basic
-    @Column(name = "key", nullable = true, length = 45)
+    @Column(name = "k", nullable = true, length = 45)
     public String getKey() {
         return key;
     }
@@ -48,7 +48,7 @@ public class Specification {
     }
 
     @Basic
-    @Column(name = "value", nullable = true, length = 250)
+    @Column(name = "v", nullable = true, length = 250)
     public String getValue() {
         return value;
     }

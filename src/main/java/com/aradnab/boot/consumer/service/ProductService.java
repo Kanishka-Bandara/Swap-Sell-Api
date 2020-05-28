@@ -1,10 +1,10 @@
 package com.aradnab.boot.consumer.service;
 
-import com.aradnab.boot.Status;
+import com.aradnab.boot.config.Status;
+import com.aradnab.boot.consumer.service.service_controller.ProductServiceInterface;
 import com.aradnab.boot.db_tier.entity.Product;
 import com.aradnab.boot.db_tier.exception.ResourceNotFoundException;
 import com.aradnab.boot.db_tier.repository.ProductRepository;
-import com.aradnab.boot.general.service.service_controller.ProductServiceInterface;
 import com.aradnab.boot.general.service.service_controller.CRUDStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -31,6 +31,7 @@ public class ImageService implements ImageServiceInterface {
     private ImageRepository repository;
     @Autowired
     private EntityManager em;
+
     @Override
     public Image create(Image image) {
         image.setSavedAt(new Date());
@@ -84,25 +85,29 @@ public class ImageService implements ImageServiceInterface {
     public String writeProfileImage(Map<String, String> body) throws Exception {
         String encodedImage = body.get("data");
         String userId = body.get("userId");
-        String fileName = userId+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+body.get("profilePicName");
-        String writable_imgPath = ResourceUrl.WRITABLE_PROFILE_DIR + "/"+fileName;
-        String viewed_imgPath =    ResourceUrl.VIRTUAL_PROFILE_DIR+"/"+fileName;
-        writeImage(encodedImage,writable_imgPath);
+        String fileName = userId + "_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + body.get("profilePicName");
+        String writable_imgPath = ResourceUrl.WRITABLE_PROFILE_DIR + "/" + fileName;
+        String viewed_imgPath = ResourceUrl.VIRTUAL_PROFILE_DIR + "/" + fileName;
+        writeImage(encodedImage, writable_imgPath);
         return viewed_imgPath;
     }
 
     @Override
-    public List<String> writeProductImages(int productId, List<String> images){
+    public List<String> writeProductImages(int productId, List<String> images) {
         List<String> paths = new ArrayList<>();
         images.forEach(encodedImage -> {
-            String fileName = productId+"_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+".jpg";
-            String writable_imgPath = ResourceUrl.WRITABLE_PRODUCT_DIR + "/"+fileName;
-            String viewed_imgPath =    ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+fileName;
-            try {
-                writeImage(encodedImage,writable_imgPath);
-                paths.add(writable_imgPath);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (encodedImage.startsWith("https://") || encodedImage.contains("http://")) {
+                paths.add(encodedImage);
+            } else {
+                String fileName = productId + "_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+                String writable_imgPath = ResourceUrl.WRITABLE_PRODUCT_DIR + "/" + fileName;
+                String viewed_imgPath = ResourceUrl.VIRTUAL_PRODUCT_DIR + "/" + fileName;
+                try {
+                    writeImage(encodedImage, writable_imgPath);
+                    paths.add(writable_imgPath);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         return paths;
@@ -126,20 +131,26 @@ public class ImageService implements ImageServiceInterface {
     }
 
     @Override
-    public String getSendAbleProfileImageUrl(String fileName){
-        return ResourceUrl.VIRTUAL_PROFILE_DIR+"/"+fileName;
+    public String getSendAbleProfileImageUrl(String fileName) {
+        if (fileName.startsWith("https://") || fileName.contains("http://")) {
+            return fileName;
+        }
+        return ResourceUrl.VIRTUAL_PROFILE_DIR + "/" + fileName;
     }
 
     @Override
-    public String getSendAbleProductImageUrl(String fileName){
-        return ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+fileName;
+    public String getSendAbleProductImageUrl(String fileName) {
+        if (fileName.startsWith("https://") || fileName.contains("http://")) {
+            return fileName;
+        }
+        return ResourceUrl.VIRTUAL_PRODUCT_DIR + "/" + fileName;
     }
 
     @Override
-    public List<String> getSendAbleProductImageUrl(List<String> files){
+    public List<String> getSendAbleProductImageUrl(List<String> files) {
         List<String> imgs = new ArrayList<>();
         files.forEach(s -> {
-            imgs.add(ResourceUrl.VIRTUAL_PRODUCT_DIR+"/"+s);
+            imgs.add(ResourceUrl.VIRTUAL_PRODUCT_DIR + "/" + s);
         });
         return imgs;
     }

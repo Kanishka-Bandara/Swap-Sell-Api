@@ -57,10 +57,12 @@ public class UserModel {
         um.setActiveState(user.getActiveState());
         um.setCountry(user.getCountryByCountryId().getCountry());
         String imgUrl = user.getImageByImageId().getImgUrl();
-        if (imgUrl.contains("http")) {
-            um.setProfilePicUrl(imgUrl);
-        } else {
-            um.setProfilePicUrl(ResourceUrl.VIRTUAL_HOST_URL +imgUrl);
+        if (imgUrl != null) {
+            if (imgUrl.contains("http")) {
+                um.setProfilePicUrl(imgUrl);
+            } else {
+                um.setProfilePicUrl(ResourceUrl.VIRTUAL_HOST_URL + imgUrl);
+            }
         }
 //        BEGIN::Setting Emails
         if (user.getEmailsById() != null) {

@@ -41,20 +41,25 @@ public class UserController {
     ContactNumberController contactNumberController;
     @Autowired
     ContactNumberService contactNumberService;
+    @Autowired
+    ShopService shopService;
 
     @PostMapping("/create")
     public ResponseEntity<UserModel> create(@RequestBody UserModel userModel) {
         Date d = new Date();
+//        BEGIN::Saving image
         Image i = new Image();
         i.setImgUrl(userModel.getProfilePicUrl());
         i.setSavedAt(d);
         i.setLastUpdatedAt(d);
         i.setStatus(Status.LIVE_ACTIVE_STATUS);
         Image image = imageService.create(i);
-        User u = new User();
+//        END::Saving image
         Title title = titleService.getByTitleName(userModel.getTitle());
         Gender gender = genderService.getGenderByName(userModel.getGender());
         Country country = countryService.getByName(userModel.getCountry());
+//        BEGIN::Saving User
+        User u = new User();
         u.setTitleId(title.getId());
         u.setGenderId(gender.getId());
         u.setImageId(image.getId());
@@ -66,8 +71,6 @@ public class UserController {
         u.setUserId(userService.generateUserID(userModel.getUserType()));
         u.setFName(userModel.getFName());
         u.setLName(userModel.getLName());
-        System.out.println("f name = " + userModel.getFName());
-        System.out.println("l name = " + userModel.getLName());
         u.setSName(userModel.getSName());
         u.setFullName(userModel.getFullName());
         u.setActiveState(userModel.getActiveState());
@@ -79,6 +82,7 @@ public class UserController {
         u.setImageByImageId(image);
         u.setCountryByCountryId(country);
         User nu = userService.create(u);
+//        END::Saving User
 //        BEGIN::Creat User Address
         if (userModel.getAddresses() != null) {
             if (userModel.getAddresses().size() > 0) {
@@ -113,6 +117,29 @@ public class UserController {
         }
         u.setContactNumbersById(contactNumberService.getByUserIdAsCollection(nu.getId()));
 //        END::Create User Contact Number
+//        BEGIN::Create User Shop
+//        BEGIN::Create Shop  Image
+        Image shopImage = new Image();
+        shopImage.setImgUrl(null);
+        shopImage.setSavedAt(d);
+        shopImage.setLastUpdatedAt(d);
+        shopImage.setStatus(Status.LIVE_ACTIVE_STATUS);
+        shopImage = imageService.create(shopImage);
+//        END::Create Shop Image
+        Shop s = new Shop();
+        s.setUserId(nu.getId());
+        s.setUserByUserId(nu);
+        s.setImageId(shopImage.getId());
+        s.setImageByImageId(shopImage);
+        s.setIsActive(Status.LIVE_ACTIVE_STATUS);
+        s.setShopName("Shop "+nu.getFName());
+        s.setSavedAt(d);
+        s.setLastUpdatedAt(d);
+        s.setStatus(Status.LIVE_ACTIVE_STATUS);
+        s.setImageByImageId(shopImage);
+        s.setShopRatingsById(null);
+        Shop newShop = shopService.create(s);
+//        END::Create User Shop\
         return get(nu.getId());
     }
     //    BEGIN::EDIT USER

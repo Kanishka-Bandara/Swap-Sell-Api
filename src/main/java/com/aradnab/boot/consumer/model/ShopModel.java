@@ -30,7 +30,7 @@ public class ShopModel {
         sm.setShopName(shop.getShopName());
         sm.setOwnerId(shop.getUserId());
         sm.setImgUrl(shop.getImageByImageId().getImgUrl());
-        sm.setRating(5.0);
+        sm.setRating(0);
         sm.setStatus(shop.getStatus());
         return sm;
     }

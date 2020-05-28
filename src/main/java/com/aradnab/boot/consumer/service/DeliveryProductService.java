@@ -58,6 +58,21 @@ public class DeliveryProductService implements DeliveryProductServiceInterface {
     }
 
     @Override
+    public DeliveryProduct getByProductId(int id) {
+        List<DeliveryProduct> l = em.createQuery("from DeliveryProduct  x where x.productId = " + id + " and x.status!=" + Status.DELETE_STATUS, DeliveryProduct.class).getResultList();
+        if (l.size() > 0) {
+            return l.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<DeliveryProduct> getByUserId(int userId) {
+        return em.createQuery("from DeliveryProduct  x where x.productByProductId.shopByShopId.userId='" + userId + "' and  x.status!=" + Status.DELETE_STATUS, DeliveryProduct.class).getResultList();
+    }
+
+    @Override
     public CRUDStatus delete(int id) {
         List<DeliveryProduct> l = em.createQuery("from DeliveryProduct  x where x.id = " + id + " and x.status!=" + Status.DELETE_STATUS, DeliveryProduct.class).getResultList();
         if (l.size() > 0) {

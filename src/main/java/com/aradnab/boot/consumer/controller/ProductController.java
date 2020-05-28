@@ -7,15 +7,21 @@ import com.aradnab.boot.db_tier.entity.*;
 import com.aradnab.boot.general.service.ImageService;
 import com.aradnab.boot.general.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
@@ -50,9 +56,13 @@ public class ProductController {
     @Autowired
     DeliveryProductService deliveryProductService;
 
-    @PostMapping("/create")
-    public ResponseEntity<ProductModel> create(@RequestBody ProductModel productModel) {
+//    BEGIN::Product create
+    @PostMapping("/create/{userId}")
+    public ResponseEntity<ProductModel> create(@PathVariable("userId") int userId, @RequestBody ProductModel productModel) {
         Date d = new Date();
+        productModel.setHeadCategory(productModel.getHeadCategory().replaceAll("'", ""));
+        productModel.setMainCategory(productModel.getMainCategory().replaceAll("'", ""));
+        productModel.setHeadCategory(productModel.getHeadCategory().replaceAll("'", ""));
 //        BEGIN::Head Category getting or saving
         ProductHeadCategory headCategory = productHeadCategoryService.getByName(productModel.getHeadCategory());
         if (headCategory == null) {
@@ -128,16 +138,25 @@ public class ProductController {
 //        END::Saving product
 //        BEGIN::Saving Specifications
         final int productId = product.getId();
-        productModel.getSpecifications().forEach((k, v) -> {
-            Specification s = new Specification();
-            s.setKey(k);
-            s.setValue(v);
-            s.setProductId(productId);
-            s.setLastUpdatedAt(d);
-            s.setSavedAt(d);
-            s.setStatus(Status.LIVE_ACTIVE_STATUS);
-            specificationService.create(s);
-        });
+        Map<String, String> specs = productModel.getSpecifications();
+        if (specs != null || !specs.isEmpty()) {
+            specs.forEach((k, v) -> {
+                if (k.length() > 45) {
+                    k = k.substring(0, 44);
+                }
+                if (v.length() > 250) {
+                    v = v.substring(0, 249);
+                }
+                Specification s = new Specification();
+                s.setProductId(productId);
+                s.setKey(k);
+                s.setValue(v);
+                s.setSavedAt(d);
+                s.setLastUpdatedAt(d);
+                s.setStatus(Status.LIVE_ACTIVE_STATUS);
+                specificationService.create(s);
+            });
+        }
         product.setSpecificationsById(specificationService.getByProductId(productId));
 //        END::Saving Specifications
 //        BEGIN::Saving product images
@@ -200,8 +219,57 @@ public class ProductController {
 ////        discount.set;
 //        }
 //        END::Saving Product discount
+
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProduct));
     }
+//    END::Product create
+
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<ProductModel> getByProductId(@PathVariable("id") int id) {
+        return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByProductId(id)));
+    }
+
+    @GetMapping("/getByUserId/{userId}")
+    public ResponseEntity<List<ProductModel>> getByUserId(@PathVariable("userId") int userId) {
+        return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId)));
+    }
+
+    @GetMapping("/getByUserId/{userId}")
+    public ResponseEntity<List<ProductModel>> getRecentArrivals(@PathVariable("userId") int userId) {
+        return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId)));
+    }
+
+
+//    private ExecutorService executor
+//            = Executors.newCachedThreadPool();
+//
+//    @GetMapping("/srb")
+//    public ResponseEntity<StreamingResponseBody> handleRbe() {
+//        StreamingResponseBody stream = out -> {
+//            String msg = "/srb" + " @ " + new Date();
+//            out.write(msg.getBytes());
+//        };
+//        return new ResponseEntity(stream, HttpStatus.OK);
+//    }
+//    private ExecutorService nonBlockingService = Executors
+//            .newCachedThreadPool();
+//
+//    @GetMapping("/sse/{userId}")
+//    public SseEmitter handleSse(@PathVariable("userId") int userId) {
+//        SseEmitter emitter = new SseEmitter();
+//        nonBlockingService.execute(() -> {
+//            try {
+//                List<ProductModel> productModels = ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId));
+//                emitter.send(productModels);
+//                // we could send more events
+//                emitter.complete();
+//            } catch (Exception ex) {
+//                emitter.completeWithError(ex);
+//            }
+//        });
+//        return emitter;
+//    }
 
 }
 

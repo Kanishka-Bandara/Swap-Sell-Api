@@ -19,7 +19,7 @@ import java.util.*;
 public class ProductModel extends DefaultModel<ProductModel, DeliveryProduct> {
 
     @Autowired
-    static ImageService imageService;
+    static ImageService imageService = new ImageService();
     int id;
     String uniqueID;
     String name;
@@ -69,7 +69,11 @@ public class ProductModel extends DefaultModel<ProductModel, DeliveryProduct> {
         product.getProductImagesById().forEach(productImage -> {
             if (productImage.getStatus() != Status.DELETE_STATUS) {
                 Image image = productImage.getImageByImageId();
-                images.add(imageService.getSendAbleProductImageUrl(image.getImgUrl()));
+                if (image != null) {
+                    String imgUrl = image.getImgUrl();
+                    String sendAbleProductImageUrl = imageService.getSendAbleProductImageUrl(imgUrl);
+                    images.add(sendAbleProductImageUrl);
+                }
             }
         });
         Map<String, String> specifications = new HashMap<>();
