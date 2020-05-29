@@ -61,7 +61,7 @@ public class BankController {
     //    END::Get All Banks Cards by User
 
     //    BEGIN::Save Bank Card
-    @PostMapping("/create")
+    @PostMapping("/card/create")
     public ResponseEntity<BankCardModel> create(@RequestBody BankCardModel bankCardModel) {
         Date d = new Date();
         BankCard bankCard = new BankCard();
@@ -79,7 +79,7 @@ public class BankController {
     //    END::Save Bank Card
 
     //    BEGIN::Update Bank Card
-    @PostMapping("/edit")
+    @PostMapping("/card/edit")
     public ResponseEntity<BankCardModel> update(@RequestBody BankCardModel bankCardModel) {
         Date d = new Date();
         BankCard bankCard = bankCardService.getByID(bankCardModel.getId());
@@ -101,7 +101,7 @@ public class BankController {
     //    END::Update Bank Card
 
     //    BEGIN::Delete Bank Card
-    @PostMapping("/delete")
+    @PostMapping("/card/delete")
     public ResponseEntity<HttpStatus> delete(@RequestBody BankCardModel bankCardModel) {
         Date d = new Date();
         BankCard bankCard = bankCardService.getByID(bankCardModel.getId());
