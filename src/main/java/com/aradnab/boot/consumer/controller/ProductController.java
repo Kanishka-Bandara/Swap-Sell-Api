@@ -224,7 +224,6 @@ public class ProductController {
     }
 //    END::Product create
 
-
     @GetMapping("/getById/{id}")
     public ResponseEntity<ProductModel> getByProductId(@PathVariable("id") int id) {
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByProductId(id)));
@@ -239,7 +238,6 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>> getRecentArrivals(@PathVariable("userId") int userId) {
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId)));
     }
-
 
 //    private ExecutorService executor
 //            = Executors.newCachedThreadPool();

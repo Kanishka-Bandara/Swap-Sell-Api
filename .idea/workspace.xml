@@ -4,24 +4,7 @@
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ShopController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ShopModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/ShopModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/DeliveryProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/DeliveryProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/DeliveryProductServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/DeliveryProductServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Specification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Specification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/service/ImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/ShopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/ShopModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/UserModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/UserModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/ImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/ImageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/service_controller/ImageServiceInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/service/service_controller/ImageServiceInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/NotificationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/NotificationModel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +31,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,14 +69,8 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.aradnab.boot.general.controller" />
-      <recent name="com.aradnab.boot.general.service" />
-      <recent name="com.aradnab.boot.general.service.service_controller" />
-      <recent name="com.aradnab.boot.db_tier.repository" />
-      <recent name="com.aradnab.boot.db_tier.entity" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.aradnab.boot.consumer.controller" />
       <recent name="com.aradnab.boot.consumer.model" />
       <recent name="com.aradnab.boot.general.service.service_controller" />
     </key>
@@ -103,6 +80,13 @@
       <recent name="" />
       <recent name="com.aradnab.boot.db_tier.models" />
       <recent name="com.aradnab.boot.db_tier.model" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aradnab.boot.general.controller" />
+      <recent name="com.aradnab.boot.general.service" />
+      <recent name="com.aradnab.boot.general.service.service_controller" />
+      <recent name="com.aradnab.boot.db_tier.repository" />
+      <recent name="com.aradnab.boot.db_tier.entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\consumer\service" />
@@ -205,7 +189,8 @@
       <workItem from="1590385171805" duration="1946000" />
       <workItem from="1590562017163" duration="19118000" />
       <workItem from="1590596011919" duration="1202000" />
-      <workItem from="1590637762722" duration="18241000" />
+      <workItem from="1590637762722" duration="20318000" />
+      <workItem from="1590733378013" duration="8607000" />
     </task>
     <servers />
   </component>

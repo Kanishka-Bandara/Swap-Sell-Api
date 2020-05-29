@@ -1,5 +1,6 @@
 package com.aradnab.boot.general.model;
 
+import com.aradnab.boot.config.DefaultModel;
 import com.aradnab.boot.db_tier.entity.Notification;
 import com.aradnab.boot.db_tier.entity.UserNotification;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationModel {
+public class NotificationModel extends DefaultModel<NotificationModel, UserNotification> {
+
+    public static NotificationModel defaultModel = new NotificationModel();
 
     int id;
     String notificationHeader;
@@ -25,8 +28,8 @@ public class NotificationModel {
     int isRead;
     int state;
 
-
-    public static NotificationModel entityToModel(UserNotification userNotification) {
+    @Override
+    public NotificationModel entityToModel(UserNotification userNotification) {
         Notification notification = userNotification.getNotificationByNotificationId();
         return new NotificationModel(
                 notification.getId(),
@@ -36,17 +39,5 @@ public class NotificationModel {
                 userNotification.getIsRead(),
                 userNotification.getStatus()
         );
-    }
-
-    public static List<NotificationModel> entityToModel(List<UserNotification> userNotification) {
-        List<NotificationModel> l = new ArrayList<>();
-        userNotification.forEach(userNotification1 -> l.add(entityToModel(userNotification1)));
-        return l;
-    }
-
-    public static List<NotificationModel> entityToModel(Collection<UserNotification> userNotification) {
-        List<NotificationModel> l = new ArrayList<>();
-        userNotification.forEach(userNotification1 -> l.add(entityToModel(userNotification1)));
-        return l;
     }
 }
