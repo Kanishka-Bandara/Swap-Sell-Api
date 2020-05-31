@@ -45,17 +45,14 @@ public class NotificationController {
     //    BEGIN::Set User Notifications as read
     @PostMapping("/setAsReadBulk/{userId}")
     public ResponseEntity<List<NotificationModel>> setAsRead(@PathVariable("userId") int userId, @RequestBody List<Integer> ids) {
-        System.out.println("\n\n\n\n\n====================================");
-        System.out.println(ids);
-        System.out.println("\n\n\n\n\n====================================");
         return ResponseEntity.ok().body(NotificationModel.defaultModel.entityToModel(userNotificationService.setAsRead(ids)));
     }
     //    END::Set User Notifications as read
 
     //    BEGIN::Delete User Notification
-    @GetMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") int id) {
-        CRUDStatus status = userNotificationService.delete(id);
+    @PostMapping("/delete")
+    public ResponseEntity<Boolean> delete(@RequestBody Map<String, String> request) {
+        CRUDStatus status = userNotificationService.delete(Integer.parseInt(request.get("id")));
         if (status == CRUDStatus.DELETED)
             return ResponseEntity.ok().body(true);
         return ResponseEntity.ok().body(false);
