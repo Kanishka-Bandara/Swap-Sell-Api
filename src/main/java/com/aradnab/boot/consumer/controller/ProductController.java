@@ -234,7 +234,7 @@ public class ProductController {
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId)));
     }
 
-    @GetMapping("/getByUserId/{userId}")
+    @GetMapping("/getRecentArrivals/{userId}")
     public ResponseEntity<List<ProductModel>> getRecentArrivals(@PathVariable("userId") int userId) {
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProductService.getByUserId(userId)));
     }

@@ -9,6 +9,6 @@ public class ResourceUrl {
     public static String WRITABLE_PROFILE_DIR = ROOT_DIR+"/src/main/webapp"+REAL_PROFILE_DIR;
     public static String WRITABLE_PRODUCT_DIR = ROOT_DIR+"/src/main/webapp"+REAL_PRODUCT_DIR;
     public static String VIRTUAL_PROFILE_PICTURE_PATH = ROOT_DIR+"/src/main/webapp"+VIRTUAL_PROFILE_DIR;
-    public static String VIRTUAL_HOST_URL = "http://127.0.0.1:8080";
+    public static String VIRTUAL_HOST_URL = "http://192.168.8.100:8080";
 
 }

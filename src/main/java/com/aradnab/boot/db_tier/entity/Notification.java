@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 public class Notification {
     private int id;
+    private String notificationHeader;
     private String notification;
     private Date sendAt;
     private Date savedAt;
@@ -25,6 +26,16 @@ public class Notification {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "notification_header", nullable = true, length = 45)
+    public String getNotificationHeader() {
+        return notificationHeader;
+    }
+
+    public void setNotificationHeader(String notificationHeader) {
+        this.notificationHeader = notificationHeader;
     }
 
     @Basic

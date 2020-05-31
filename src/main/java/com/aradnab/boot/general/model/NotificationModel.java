@@ -33,7 +33,7 @@ public class NotificationModel extends DefaultModel<NotificationModel, UserNotif
         Notification notification = userNotification.getNotificationByNotificationId();
         return new NotificationModel(
                 notification.getId(),
-                "Notification",
+                notification.getNotificationHeader(),
                 notification.getNotification(),
                 userNotification.getSavedAt(),
                 userNotification.getIsRead(),

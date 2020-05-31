@@ -60,6 +60,7 @@ public class ShopController {
         i.setImgUrl(shop.getImgUrl());
         i.setSavedAt(d);
         i.setLastUpdatedAt(d);
+
         i.setStatus(Status.LIVE_ACTIVE_STATUS);
         Image image = imageService.create(i);
         Shop s = new Shop();

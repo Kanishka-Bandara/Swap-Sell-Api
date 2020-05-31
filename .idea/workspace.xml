@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3b64631-a040-4e6f-917e-a606c63db371" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/BankController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/BankCardModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/model/BankModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/BankCardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/BankService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/CardTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/BankCardServiceInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/BankServiceInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/service/service_controller/CardTypeServiceInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/config/ResourceUrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/config/ResourceUrl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/consumer/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/db_tier/entity/Notification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/NotificationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aradnab/boot/general/model/NotificationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/config/ResourceUrl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/config/ResourceUrl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/consumer/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/consumer/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/controller/ShopController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/NotificationModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aradnab/boot/general/model/NotificationModel.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +76,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aradnab.boot.general.controller" />
+      <recent name="com.aradnab.boot.general.service" />
+      <recent name="com.aradnab.boot.general.service.service_controller" />
+      <recent name="com.aradnab.boot.db_tier.repository" />
+      <recent name="com.aradnab.boot.db_tier.entity" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.aradnab.boot.consumer.controller" />
       <recent name="com.aradnab.boot.consumer.model" />
@@ -90,18 +95,11 @@
       <recent name="com.aradnab.boot.db_tier.models" />
       <recent name="com.aradnab.boot.db_tier.model" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.aradnab.boot.general.controller" />
-      <recent name="com.aradnab.boot.general.service" />
-      <recent name="com.aradnab.boot.general.service.service_controller" />
-      <recent name="com.aradnab.boot.db_tier.repository" />
-      <recent name="com.aradnab.boot.db_tier.entity" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\consumer\service" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\consumer\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service" />
-      <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\general\service\service_controller" />
       <recent name="D:\Projects\SpringBoot\swap-sell\src\main\java\com\aradnab\boot\db_tier\repository" />
     </key>
   </component>
@@ -199,7 +197,12 @@
       <workItem from="1590562017163" duration="19118000" />
       <workItem from="1590596011919" duration="1202000" />
       <workItem from="1590637762722" duration="20318000" />
-      <workItem from="1590733378013" duration="8710000" />
+      <workItem from="1590733378013" duration="11317000" />
+      <workItem from="1590816133716" duration="795000" />
+      <workItem from="1590819287273" duration="6651000" />
+      <workItem from="1590850695513" duration="1803000" />
+      <workItem from="1590903655937" duration="2664000" />
+      <workItem from="1590927768413" duration="10145000" />
     </task>
     <servers />
   </component>
