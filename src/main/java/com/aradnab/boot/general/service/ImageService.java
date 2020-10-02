@@ -92,14 +92,17 @@ public class ImageService implements ImageServiceInterface {
         return viewed_imgPath;
     }
 
+    static int i = 1;
     @Override
     public List<String> writeProductImages(int productId, List<String> images) {
+        i = 1;
+        System.out.println("===========image count = "+images.size());
         List<String> paths = new ArrayList<>();
         images.forEach(encodedImage -> {
             if (encodedImage.startsWith("https://") || encodedImage.contains("http://")) {
                 paths.add(encodedImage);
             } else {
-                String fileName = productId + "_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+                String fileName = productId + "_"+i+"_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
                 String writable_imgPath = ResourceUrl.WRITABLE_PRODUCT_DIR + "/" + fileName;
                 String viewed_imgPath = ResourceUrl.VIRTUAL_PRODUCT_DIR + "/" + fileName;
                 try {
@@ -109,6 +112,7 @@ public class ImageService implements ImageServiceInterface {
                     e.printStackTrace();
                 }
             }
+            i++;
         });
         return paths;
     }

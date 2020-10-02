@@ -67,9 +67,17 @@ public class ProductController {
         ProductHeadCategory headCategory = productHeadCategoryService.getByName(productModel.getHeadCategory());
         if (headCategory == null) {
             ProductHeadCategory hc = new ProductHeadCategory();
-            hc.setCategoryName(productModel.getHeadCategory());
+            if (productModel.getHeadCategory().length()>45){
+                hc.setCategoryName(productModel.getHeadCategory().substring(0,44));
+            }else {
+                hc.setCategoryName(productModel.getHeadCategory());
+            }
             hc.setSavedAt(d);
             hc.setLastUpdatedAt(d);
+            System.out.println("======================");
+            System.out.println(productModel.getHeadCategory());
+            System.out.println(productModel.getHeadCategory().length());
+            System.out.println("===========================");
             headCategory = productHeadCategoryService.create(hc);
         }
 //        END::Head Category getting or saving
@@ -219,7 +227,7 @@ public class ProductController {
 ////        discount.set;
 //        }
 //        END::Saving Product discount
-
+        System.out.println("Product - "+deliveryProduct.getId()+" - "+deliveryProduct.getProductByProductId().getName());
         return ResponseEntity.ok().body(ProductModel.defaultModel.entityToModel(deliveryProduct));
     }
 //    END::Product create

@@ -34,12 +34,12 @@ public class GenderController {
         return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(service.getGenderByName(gender)));
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<GenderModel> createGender(@RequestBody GenderModel genderModel) {
-        Gender g = new Gender();
-        g.setGender(genderModel.getGender());
-        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(this.service.createGender(g)));
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<GenderModel> createGender(@RequestBody GenderModel genderModel) {
+//        Gender g = new Gender();
+//        g.setGender(genderModel.getGender());
+//        return ResponseEntity.ok().body(GenderModel.dbGenderToModelGender(this.service.createGender(g)));
+//    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<GenderModel> updateGender(@PathVariable int id, @RequestBody Gender gender) {
@@ -58,28 +58,28 @@ public class GenderController {
         }
         return HttpStatus.OK;
     }
-
-    @GetMapping("/download")
-    public StreamingResponseBody getStreamingResponse() {
-        return new StreamingResponseBody() {
-            @Override
-            public void writeTo(OutputStream out) {
-                for (int i = 0; i < 1000; i++) {
-                    try {
-                        out.write((Integer.toString(i) + " - ")
-                                .getBytes());
-                        out.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(i);
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-    }
+//
+//    @GetMapping("/download")
+//    public StreamingResponseBody getStreamingResponse() {
+//        return new StreamingResponseBody() {
+//            @Override
+//            public void writeTo(OutputStream out) {
+//                for (int i = 0; i < 1000; i++) {
+//                    try {
+//                        out.write((Integer.toString(i) + " - ")
+//                                .getBytes());
+//                        out.flush();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println(i);
+//                    try {
+//                        Thread.sleep(50);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//    }
 }
